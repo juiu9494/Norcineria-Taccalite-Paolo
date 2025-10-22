@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macelleria Hasher - Carne di Qualità</title>
+    <style>
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f5f2;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Page de chargement */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8B0000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+        }
+
+        .loader-logo {
+            width: 400px;
+            height: 200px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        .loader-logo img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .loader-text {
+            color: white;
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            animation: fadeInOut 2s infinite;
+        }
+
+        .loader-bar {
+            width: 300px;
+            height: 4px;
+            background-color: rgba(255,255,255,0.3);
+            margin-top: 20px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            height: 100%;
+            width: 0%;
+            background-color: #fff;
+            border-radius: 2px;
+            animation: loading 3s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Header */
+        header {
+            background-color: #8B0000;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transform: translateY(-100%);
+            animation: slideDown 1s forwards 1s;
+        }
+
+        @keyframes slideDown {
+            to { transform: translateY(0); }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 150px;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(5deg);
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 1.5s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            margin-left: 10%;
+            color: white;
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideInRight 1s forwards 2s;
+        }
+
+        @keyframes slideInRight {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #8B0000;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background-color: #A52A2A;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Sezioni */
+        section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #8B0000;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: #8B0000;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Prodotti */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .product-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #8B0000;
+        }
+
+        /* Informazioni */
+        .info-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .info-section.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .info-section h3 {
+            font-size: 24px;
+            color: #8B0000;
+            margin-bottom: 20px;
+        }
+
+        .info-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Mappa */
+        #map {
+            height: 400px;
+            margin-top: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        #map.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #8B0000;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #8B0000;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #444;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #8B0000;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 10px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page de chargement -->
+    <div id="loader">
+        <div class="loader-logo">
+            <img src="logo.png" alt="Logo Macelleria Hasher">
+        </div>
+        <div class="loader-text">CARICAMENTO...</div>
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="Logo Macelleria Hasher">
+                    
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#prodotti">Prodotti</a></li>
+                        <li><a href="#chi-siamo">Chi Siamo</a></li>
+                        <li><a href="#contatti">Contatti</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="slideshow">
+            <!-- Les images seront ajoutées dynamiquement par JavaScript -->
+        </div>
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h2>Carne di Qualità Superiore</h2>
+                <p>Dal 1975, la nostra passione per la carne di qualità ci ha resi un punto di riferimento ad Ancona. Scopri i nostri tagli pregiati e la tradizione che ci contraddistingue.</p>
+                <a href="#prodotti" class="btn">Scopri i Nostri Prodotti</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prodotti -->
+    <section id="prodotti" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Prodotti</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/94584797_130080351961083_6296209210241712128_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ds4l6OBbOdMQ7kNvwG8cuDa&_nc_oc=AdkhZANrlYytIfp2t9dKkO3qSeS2ENLXPk-5hZE54vvPBlpWCKa13nDwNfExOMAVN5A&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=NdMYLJ9Sbz-7kG7h_U7y8w&oh=00_AfeXP_WRAlXSPOT30BIM94TLlk9pz-3UgZI33sEzrOQ72g&oe=69208A71')"></div>
+                    <div class="product-info">
+                        <h3>Tagli di Manzo Pregiati</h3>
+                        <p>Selezione dei migliori tagli di manzo, provenienti da allevamenti italiani di alta qualità.</p>
+                        <div class="product-price"></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/94881884_132585191710599_8701086833791991808_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=6eJ-LEsRTEoQ7kNvwFaqFPK&_nc_oc=AdmTRkSKtQ-54O8rMiN5KPISohX-hf9FRkivmK8tXrIMB6fMsrY5BGKKF5AeZyC9pbo&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=JL97FDevlxLb8VvGlNZ8vA&oh=00_AfclnRd6Lun9mbOqyHR2soUm-qXywdCSqLDFilEPDaMPTg&oe=692083B7')"></div>
+                    <div class="product-info">
+                        <h3>Specialità di Maiale</h3>
+                        <p>Prodotti suini di eccellenza, lavorati secondo le antiche tradizioni marchigiane.</p>
+                        <div class="product-price"></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/95415563_132585211710597_3074195616037863424_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=47TIEdrNP_kQ7kNvwEW6Dar&_nc_oc=Adk5bT-EHZ2Y1v0WXSFLyIUMC4vd8_Z1fWSFEKlOaqjNG6mu_k8QH6tKk_6oPpkwWI4&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=hvIjHJINrhM5tkzhPgrRKA&oh=00_AffYRlUxJf5pRRcLEJb3uA_p25eKRz8SwUiE7-oflNCF1A&oe=69206178')"></div>
+                    <div class="product-info">
+                        <h3>Salumi Artigianali</h3>
+                        <p>Una vasta selezione di salumi stagionati, prosciutti e insaccati di nostra produzione.</p>
+                        <div class="product-price"></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/98519266_139207511048367_7806952343018143744_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Ur9uZn7FpIsQ7kNvwGO3hpy&_nc_oc=AdnYzLQ4ao3U1sDVQEa2XGJM_3tgxhxlsaFf8QP6-obW2IY8rHkMZ9fcVrnsyFs9jkI&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=nCqM3b1LhepwM3YnoOpGaQ&oh=00_AfcxkAh_DYs10Rh3ARdTwsubCgcWlwiVuGIGKtfPnvMQKQ&oe=692062D6')"></div>
+                    <div class="product-info">
+                        <h3>Carne di Pollame</h3>
+                        <p>Pollame fresco e di qualità, allevato a terra con alimentazione naturale.</p>
+                        <div class="product-price"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Chi Siamo</h2>
+            </div>
+            <div class="info-section">
+                <h3>La Nostra Storia</h3>
+                <p>Fondata nel 1975, Norcineria Taccalite Paolo è diventata un punto di riferimento per gli amanti della carne di qualità ad Ancona. La nostra filosofia si basa sulla selezione accurata delle materie prime, sul rispetto delle tradizioni e sull'innovazione nelle tecniche di lavorazione.</p>
+                <p>Da tre generazioni, la famiglia Hasher porta avanti con passione e dedizione l'arte della macelleria, garantendo ai nostri clienti prodotti di altissima qualità, provenienti da allevamenti locali selezionati.</p>
+            </div>
+            <div class="info-section">
+                <h3>La Nostra Filosofia</h3>
+                <p>Crediamo che la qualità della carne dipenda da molti fattori: l'allevamento, l'alimentazione degli animali, il rispetto dei tempi di maturazione e la professionalità nella lavorazione. Per questo selezioniamo personalmente ogni fornitore e controlliamo ogni fase della filiera.</p>
+                <p>La tracciabilità e la trasparenza sono per noi valori fondamentali. Siamo orgogliosi di poter raccontare la provenienza di ogni prodotto che vendiamo e le caratteristiche che lo rendono speciale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti e Mappa -->
+    <section id="contatti" class="contacts">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contatti</h2>
+            </div>
+            <div class="info-section">
+                <h3>Vieni a Trovarci</h3>
+                <p>Siamo situati nel cuore del Mercato Piazza d'Armi, dove da decenni offriamo i nostri prodotti ai clienti più esigenti. Il nostro banco è facilmente riconoscibile per la cura dei dettagli e l'attenzione alla presentazione.</p>
+                <p><strong>Indirizzo:</strong> Mercato Piazza d'Armi, 60127 Ancona</p>
+                <p><strong>Telefono:</strong> +39 071 123456</p>
+                <p><strong>Orari:</strong> Lun-Sab: 7:00-13:00, 16:00-20:00 | Dom: Chiuso</p>
+            </div>
+            <div id="map">
+                <!-- Mappa Google Maps intégrée -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2878.654240723935!2d13.518215315499245!3d43.82444497911556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d3f7b7c7b7b7b%3A0x7b7b7b7b7b7b7b7b!2sMercato%20Piazza%20d&#39;Armi%2C%2060127%20Ancona!5e0!3m2!1sit!2sit!4v1645541234567!5m2!1sit!2sit" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Norcineria Taccalite Paolo </h3>
+                    <p>Dal 1985, punto di riferimento per la carne di qualità ad Ancona. Passione, tradizione e innovazione nella lavorazione delle carni.</p>
+                    <div class="social-links">
+                        <!-- Inclure Font Awesome si ce n'est pas déjà fait -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Lien Facebook avec l'icône -->
+<a href="https://www.facebook.com/profile.php?id=100054657690138" target="_blank">
+  <i class="fab fa-facebook-f"></i>
+</a>
+
+                       
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Link Veloci</h3>
+                    <a href="#home">Home</a>
+                    <a href="#prodotti">Prodotti</a>
+                    <a href="#chi-siamo">Chi Siamo</a>
+                    <a href="#contatti">Contatti</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contatti</h3>
+                    <p>Mercato Piazza d'Armi, 60127 Ancona</p>
+                    <p>+39 071897903</p>
+                    <p></p>
+                </div>
+                <div class="footer-column">
+                    <h3>Orari di Apertura</h3>
+                    <p>Lunedì - Sabato: 7:00-13:00, 16:00-20:00</p>
+                    <p>Domenica: Chiuso</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 1975 Norcineria Taccalite Paolo | Iva : 03007180429 | Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page de chargement
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            setTimeout(function() {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 3000);
+        });
+
+        // Slideshow
+        const images = [
+            'https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/93569438_129031912065927_1603893087866716160_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=4Zg8KT9NZW4Q7kNvwFpkppr&_nc_oc=AdnfhO4zAw8rDy3d5zh0vw_kcEjD6T-hBlooqLPrlxEJebQ7TI0Aq3OzwVCNPyDdjBQ&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=94Ym01S_fmgdrenasYZaqQ&oh=00_AfepYtMSndK0uRII4oQ0jZBO-vR0xjcbZLNtjJeaCcTSiw&oe=692082D9',
+            'https://scontent-ams2-1.xx.fbcdn.net/v/t39.30808-6/474020109_1127378262427420_2159892929755116172_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=L0lc3-VdyF8Q7kNvwGSnmmX&_nc_oc=AdnUC9tRo0TI4TCqXHmigeWRTMW70Xj60vWtmIucXbJLZYX-pED-OC0iKDugzjlK_dI&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=HfTlhZ5FgHrHLkqIigknSw&oh=00_AffN3sVs8pYXX8zFQ1oz08-TS-Iu70smk_xoID9bPyxWNQ&oe=68FECFE8',
+            'https://scontent-ams2-1.xx.fbcdn.net/v/t39.30808-6/473171257_1121386259693287_2965290595950131410_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=rxNlnuCEmU8Q7kNvwGytoth&_nc_oc=AdmlFk9sXyc2uLdAuM2p3z7kY9cxHYyWhKgEYvYPnV6wismOjeWNBtYLhk_A5n0irtg&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=-S8QknUDeo5pAe8yVOLo9Q&oh=00_Afd4jmyR0l9pNszwHvxv_3otZDsL-wWcQBC5XjuC0T6xjQ&oe=68FEE1F1',
+            'https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/94022358_128498335452618_1194629455276933120_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=0bphUwy0gTwQ7kNvwGhD9m-&_nc_oc=AdnIb3AF7Tg7gRRTDVlKi3xQ3x4hXIi4m7M-sreKjWHA8sDDut2D0nvELY8h2J9csRY&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=EMH2rcc14thatPqQ8wLECw&oh=00_AfdpMjZkPV8sOFt9Tw2YffGjph6nhZH2Ro_mPVyJHOosBw&oe=69207BFD',
+            'https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/118723739_174420017527116_3803836494778823324_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=KqVonbwl3UwQ7kNvwH7Jtmo&_nc_oc=Adkw2vwIfODiKpdTjyXOfPr5pBVe2-gr1zyqz3IDtom7rWJrG-LwFMFKMob8O-AdDp4&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=brcJoaYxzrITSesR3x8K4w&oh=00_AfcUI-m0RmWmL-INMcYaOBDYlqtxtYIVuIocRP3AWfxgkQ&oe=692092BF',
+            'https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/83325454_149972249971893_2849189220223097345_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=vFcCWtAG-aAQ7kNvwE6lTJq&_nc_oc=Adnc3u0Y_UJYlgfWY8FqQn3qLe118Qyel4cZWII-ycXIMJK3e9zM3T3Yb5NygMErHf8&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=sbt4gPkizY4mbnbTtk8oxA&oh=00_Afeb9SHUSH6Te68oDCv9BSa9erFmK_ErV_PzP_BtSbXiow&oe=69207E4F'
+        ];
+
+        const slideshow = document.querySelector('.slideshow');
+        
+        // Créer les slides
+        images.forEach((image, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'slide';
+            slide.style.backgroundImage = `url('${image}')`;
+            if (index === 0) slide.classList.add('active');
+            slideshow.appendChild(slide);
+        });
+
+        // Fonction pour changer les slides
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Changer de slide toutes les 5 secondes
+        setInterval(nextSlide, 5000);
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animation en cascade pour les cartes produits
+                    if (entry.target.classList.contains('products')) {
+                        const productCards = document.querySelectorAll('.product-card');
+                        productCards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('visible');
+                            }, index * 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observer les sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Observer les éléments d'information
+        document.querySelectorAll('.info-section, #map').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
