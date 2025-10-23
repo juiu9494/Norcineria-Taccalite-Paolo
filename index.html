@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Macelleria Online - La migliore carne italiana</title>
+    <title>Macelleria Italiana - La migliore carne italiana</title>
     <style>
         /* Variables et reset */
         :root {
             --primary-color: #c62828;
-            --secondary-color: #ff9800;
+            --secondary-color: #d32f2f;
+            --accent-color: #ff9800;
             --dark-color: #333;
-            --light-color: #f4f4f4;
-            --success-color: #4caf50;
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --light-color: #f5f5f5;
+            --text-color: #333;
+            --white: #fff;
+            --font-main: 'Georgia', serif;
+            --font-secondary: 'Arial', sans-serif;
         }
 
         * {
@@ -22,19 +25,15 @@
         }
 
         body {
-            font-family: var(--font-main);
+            font-family: var(--font-secondary);
             line-height: 1.6;
-            color: var(--dark-color);
-            background-color: #fff;
+            color: var(--text-color);
+            background-color: var(--white);
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
+        h1, h2, h3, h4 {
+            font-family: var(--font-main);
+            margin-bottom: 1rem;
         }
 
         .container {
@@ -45,235 +44,215 @@
 
         .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 25px;
             background: var(--primary-color);
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-weight: bold;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn:hover {
-            background: #a51c1c;
-            transform: translateY(-2px);
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 15px auto;
         }
 
         /* Header */
         header {
-            background-color: white;
+            background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        .top-bar {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 8px 0;
-            font-size: 0.9rem;
-        }
-
-        .top-bar-content {
+        .header-container {
             display: flex;
             justify-content: space-between;
-        }
-
-        .main-header {
+            align-items: center;
             padding: 15px 0;
         }
 
-        .header-content {
+        .logo {
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: var(--font-main);
             font-size: 1.8rem;
             font-weight: bold;
             color: var(--primary-color);
+            margin-left: 10px;
         }
 
-        .search-bar {
+        nav ul {
             display: flex;
-            flex: 0 0 40%;
+            list-style: none;
         }
 
-        .search-bar input {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px 0 0 4px;
-            width: 100%;
+        nav ul li {
+            margin-left: 30px;
         }
 
-        .search-bar button {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0 15px;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 20px;
-        }
-
-        .action-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .action-item i {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        /* Navigation */
-        nav {
-            background-color: var(--primary-color);
-        }
-
-        .nav-menu {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .nav-item {
-            padding: 15px 20px;
-            color: white;
+        nav ul li a {
+            color: var(--dark-color);
             font-weight: 500;
-            transition: background-color 0.3s;
-        }
-
-        .nav-item:hover {
-            background-color: #a51c1c;
-        }
-
-        .dropdown {
+            transition: color 0.3s;
             position: relative;
         }
 
-        .dropdown-content {
-            display: none;
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        nav ul li a:after {
+            content: '';
             position: absolute;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            z-index: 1;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
         }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
+        nav ul li a:hover:after {
+            width: 100%;
         }
 
-        .dropdown-content a {
-            color: var(--dark-color);
-            padding: 12px 16px;
-            display: block;
-            border-bottom: 1px solid #eee;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1603046891745-6b9c2c6d66f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1603046891745-6b9c2c6d66f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
-            color: white;
-            padding: 100px 0;
+            background-attachment: fixed;
+            color: var(--white);
+            display: flex;
+            align-items: center;
             text-align: center;
         }
 
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.8;
         }
 
-        /* Categories */
-        .section {
-            padding: 60px 0;
+        /* About Section */
+        .about {
+            background-color: var(--light-color);
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
             color: var(--dark-color);
         }
 
-        .categories {
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Products Section */
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .category-card {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .category-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .category-card h3 {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        /* Featured Products */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
         .product-card {
-            border: 1px solid #eee;
+            background: var(--white);
             border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
         .product-image {
-            height: 200px;
+            height: 250px;
             overflow: hidden;
         }
 
@@ -285,180 +264,188 @@
         }
 
         .product-card:hover .product-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .product-info {
-            padding: 15px;
+            padding: 20px;
         }
 
-        .product-title {
-            font-weight: 600;
+        .product-info h3 {
+            font-size: 1.5rem;
             margin-bottom: 10px;
-            font-size: 1.1rem;
+            color: var(--dark-color);
         }
 
-        .product-price {
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+        .product-info p {
+            color: #666;
         }
 
-        .product-actions {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* About Section */
-        .about {
+        /* Services Section */
+        .services {
             background-color: var(--light-color);
         }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .about-text h2 {
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        .about-text p {
-            margin-bottom: 15px;
-        }
-
-        /* Services */
-        .services {
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
         .service-card {
-            text-align: center;
-            padding: 30px 20px;
+            background: var(--white);
+            padding: 40px 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
         }
 
         .service-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--primary-color);
             margin-bottom: 20px;
         }
 
         .service-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
         }
 
-        /* Testimonials */
-        .testimonials {
-            background-color: var(--light-color);
-        }
-
-        .testimonial-slider {
+        /* History Section */
+        .history-timeline {
             max-width: 800px;
             margin: 0 auto;
             position: relative;
         }
 
-        .testimonial {
-            background: white;
-            padding: 30px;
+        .history-timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            width: 50%;
+            padding: 0 40px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
         }
 
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
+        .timeline-content:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            top: 20px;
         }
 
-        .testimonial-author {
+        .timeline-item:nth-child(odd) .timeline-content:after {
+            right: -50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:after {
+            left: -50px;
+        }
+
+        .timeline-year {
             font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
         }
 
-        /* Newsletter */
-        .newsletter {
-            background-color: var(--primary-color);
-            color: white;
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
             text-align: center;
-            padding: 60px 0;
         }
 
-        .newsletter h2 {
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-item {
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
             margin-bottom: 20px;
+            color: var(--accent-color);
         }
 
-        .newsletter p {
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 4px 0 0 4px;
-        }
-
-        .newsletter-form button {
-            background: var(--dark-color);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
+        .contact-item h3 {
+            margin-bottom: 15px;
         }
 
         /* Footer */
         footer {
-            background-color: var(--dark-color);
-            color: white;
+            background: var(--dark-color);
+            color: var(--white);
             padding: 60px 0 20px;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
 
         .footer-column h3 {
+            font-size: 1.3rem;
             margin-bottom: 20px;
-            font-size: 1.2rem;
+            color: var(--accent-color);
         }
 
         .footer-column ul li {
             margin-bottom: 10px;
         }
 
+        .footer-column ul li a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
         .footer-column ul li a:hover {
-            color: var(--secondary-color);
+            color: var(--accent-color);
         }
 
         .social-icons {
@@ -473,7 +460,7 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
             transition: background 0.3s;
         }
@@ -485,300 +472,291 @@
         .footer-bottom {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
             }
 
-            .search-bar {
-                flex: 0 0 100%;
+            .timeline-item {
                 width: 100%;
+                left: 0 !important;
+                padding: 0 20px 0 60px;
             }
 
-            .nav-menu {
+            .history-timeline:before {
+                left: 30px;
+            }
+
+            .timeline-content:after {
+                left: -40px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
                 flex-direction: column;
+                padding: 10px 0;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            nav ul {
+                margin-top: 15px;
+            }
+
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
             }
 
             .hero h1 {
                 font-size: 2rem;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .newsletter-form input,
-            .newsletter-form button {
-                width: 100%;
-                border-radius: 4px;
+            .section {
+                padding: 60px 0;
             }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container top-bar-content">
-            <div>Spedizione gratuita per ordini superiori a €50</div>
-            <div>
-                <a href="#">Assistenza</a> | 
-                <a href="#">Trova Negozio</a>
-            </div>
-        </div>
-    </div>
-
     <!-- Header -->
     <header>
-        <div class="container main-header">
-            <div class="header-content">
-                <div class="logo">MACELLERIA ONLINE</div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Cerca prodotti...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-                <div class="header-actions">
-                    <div class="action-item">
-                        <i class="fas fa-user"></i>
-                        <span>Account</span>
-                    </div>
-                    <div class="action-item">
-                        <i class="fas fa-heart"></i>
-                        <span>Preferiti</span>
-                    </div>
-                    <div class="action-item">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Carrello (0)</span>
-                    </div>
-                </div>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Macelleria Italiana">
+                <div class="logo-text">MACELLERIA ITALIANA</div>
             </div>
-        </div>
-
-        <!-- Navigation -->
-        <nav>
-            <div class="container">
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="#">Home</a></li>
-                    <li class="nav-item dropdown">
-                        <a href="#">Carne Bovina <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="#">Bistecche</a>
-                            <a href="#">Macinato</a>
-                            <a href="#">Arrosti</a>
-                            <a href="#">Tagli per Brasato</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#">Carne Suina <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="#">Salsicce</a>
-                            <a href="#">Pancetta</a>
-                            <a href="#">Arrosti</a>
-                            <a href="#">Costine</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#">Pollame <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="#">Pollo</a>
-                            <a href="#">Tacchino</a>
-                            <a href="#">Anatra</a>
-                            <a href="#">Oca</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#">Salumi <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="#">Prosciutto Crudo</a>
-                            <a href="#">Salame</a>
-                            <a href="#">Mortadella</a>
-                            <a href="#">Pancetta</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a href="#">Offerte</a></li>
-                    <li class="nav-item"><a href="#">Chi Siamo</a></li>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Chi Siamo</a></li>
+                    <li><a href="#products">Prodotti</a></li>
+                    <li><a href="#services">Servizi</a></li>
+                    <li><a href="#history">Storia</a></li>
+                    <li><a href="#contact">Contatti</a></li>
                 </ul>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container">
-            <h1>La Migliore Carne Italiana a Casa Tua</h1>
-            <p>Scopri la nostra selezione di carni di alta qualità, provenienti da allevamenti sostenibili e selezionati con cura.</p>
-            <a href="#" class="btn">Scopri di Più</a>
-        </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Le Nostre Categorie</h2>
-            <div class="categories">
-                <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Carne Bovina">
-                    <h3>Carne Bovina</h3>
-                </div>
-                <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1558036117-15e82a2c9a9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Carne Suina">
-                    <h3>Carne Suina</h3>
-                </div>
-                <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Pollame">
-                    <h3>Pollame</h3>
-                </div>
-                <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Salumi">
-                    <h3>Salumi</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Prodotti in Evidenza</h2>
-            <div class="products">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1588347818122-c6f4e0de0e6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Bistecca di Manzo">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Bistecca di Manzo Chianina</h3>
-                        <div class="product-price">€24,90/kg</div>
-                        <div class="product-actions">
-                            <button class="btn">Aggiungi al Carrello</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1558036117-15e82a2c9a9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Lombo di Maiale">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Lombo di Maiale Nero</h3>
-                        <div class="product-price">€18,50/kg</div>
-                        <div class="product-actions">
-                            <button class="btn">Aggiungi al Carrello</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Pollo Biologico">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Pollo Biologico Intero</h3>
-                        <div class="product-price">€12,90/kg</div>
-                        <div class="product-actions">
-                            <button class="btn">Aggiungi al Carrello</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Prosciutto Crudo">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Prosciutto Crudo di Parma DOP</h3>
-                        <div class="product-price">€32,00/kg</div>
-                        <div class="product-actions">
-                            <button class="btn">Aggiungi al Carrello</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero-content">
+                <h1>La Tradizione della Carne Italiana</h1>
+                <p>Da oltre 50 anni selezioniamo le migliori carni italiane, provenienti da allevamenti sostenibili e rispettosi del benessere animale. La qualità e la tradizione sono la nostra missione.</p>
+                <a href="#about" class="btn">Scopri di Più</a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="section about">
+    <section class="about" id="about">
         <div class="container">
+            <h2 class="section-title">Chi Siamo</h2>
             <div class="about-content">
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1603046891745-6b9c2c6d66f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="La nostra macelleria">
                 </div>
                 <div class="about-text">
-                    <h2>La Nostra Storia</h2>
-                    <p>Da oltre 50 anni, la nostra famiglia si dedica con passione alla selezione delle migliori carni italiane. Scegliamo solo prodotti di altissima qualità, provenienti da allevamenti sostenibili e rispettosi del benessere animale.</p>
-                    <p>La nostra missione è portare sulla tua tavola il vero sapore della tradizione italiana, con carni succulente e genuine che rispettano i più alti standard qualitativi.</p>
-                    <a href="#" class="btn">Scopri di Più</a>
+                    <h2>La Nostra Passione per la Qualità</h2>
+                    <p>Fondata nel 1970, la nostra macelleria è un punto di riferimento per gli amanti della carne di qualità. Scegliamo solo i migliori tagli, provenienti da allevamenti italiani che rispettano i più alti standard di benessere animale e sostenibilità.</p>
+                    <p>La nostra filosofia si basa su tre principi fondamentali: tracciabilità completa, rispetto per l'ambiente e passione per il prodotto. Ogni taglio che proponiamo racconta una storia di tradizione e dedizione.</p>
+                    <p>Venite a trovarci nel nostro negozio o contattateci per scoprire come portare il sapore autentico della carne italiana sulla vostra tavola.</p>
+                    <a href="#contact" class="btn">Contattaci</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">I Nostri Prodotti</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Carne Bovina">
+                    </div>
+                    <div class="product-info">
+                        <h3>Carne Bovina</h3>
+                        <p>Selezione di carni bovine di altissima qualità, provenienti da razze pregiate come Chianina, Marchigiana e Romagnola.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558036117-15e82a2c9a9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Carne Suina">
+                    </div>
+                    <div class="product-info">
+                        <h3>Carne Suina</h3>
+                        <p>Carne suina di qualità, con particolare attenzione ai salumi e ai tagli per arrosti e brasati.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Pollame">
+                    </div>
+                    <div class="product-info">
+                        <h3>Pollame</h3>
+                        <p>Pollame allevato a terra, con particolare attenzione alla qualità e al benessere animale.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="section">
+    <section class="services" id="services">
         <div class="container">
             <h2 class="section-title">I Nostri Servizi</h2>
-            <div class="services">
+            <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-shipping-fast"></i>
+                        <i class="fas fa-cut"></i>
                     </div>
-                    <h3>Consegna Rapida</h3>
-                    <p>Consegna a domicilio in 24/48 ore in tutta Italia, con imballaggio refrigerato per garantire la freschezza dei prodotti.</p>
+                    <h3>Taglio Su Misura</h3>
+                    <p>Tagliamo la carne secondo le vostre preferenze, garantendo sempre la massima freschezza e qualità.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-award"></i>
+                        <i class="fas fa-box"></i>
                     </div>
-                    <h3>Qualità Garantita</h3>
-                    <p>Tutti i nostri prodotti sono selezionati e controllati per garantire la massima qualità e sicurezza alimentare.</p>
+                    <h3>Confezionamento Personalizzato</h3>
+                    <p>Preparazione di confezioni regalo e scatole assortite per ogni occasione speciale.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-user-check"></i>
+                        <i class="fas fa-utensils"></i>
                     </div>
-                    <h3>Consulenza Esperta</h3>
-                    <p>Il nostro team di esperti è a tua disposizione per consigliarti sulla scelta e preparazione delle carni.</p>
+                    <h3>Consulenza Culinaria</h3>
+                    <p>Consigli sulla preparazione e cottura per valorizzare al meglio ogni tipo di carne.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="section testimonials">
+    <!-- History Section -->
+    <section id="history">
         <div class="container">
-            <h2 class="section-title">Cosa Dicono i Nostri Clienti</h2>
-            <div class="testimonial-slider">
-                <div class="testimonial">
-                    <p class="testimonial-text">"La qualità della carne è eccezionale! Ho ordinato diverse volte e sono sempre rimasto soddisfatto. Il servizio di consegna è puntuale e i prodotti arrivano sempre freschissimi."</p>
-                    <p class="testimonial-author">- Marco R.</p>
+            <h2 class="section-title">La Nostra Storia</h2>
+            <div class="history-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1970</div>
+                        <h3>Fondazione</h3>
+                        <p>Giovanni Rossi fonda la macelleria con la missione di portare sulle tavole degli italiani carne di altissima qualità.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1985</div>
+                        <h3>Prima Espansione</h3>
+                        <p>Apertura del secondo punto vendita nel centro storico, con una clientela sempre più ampia e fedele.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2000</div>
+                        <h3>Seconda Generazione</h3>
+                        <p>Marco Rossi, figlio del fondatore, prende in mano l'attività introducendo nuove tecniche di selezione e lavorazione.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2015</div>
+                        <h3>Sostenibilità</h3>
+                        <p>Adozione di pratiche sostenibili e collaborazione con allevamenti che rispettano il benessere animale.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter -->
-    <section class="newsletter">
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
         <div class="container">
-            <h2>Iscriviti alla Nostra Newsletter</h2>
-            <p>Ricevi offerte esclusive, ricette e consigli per la preparazione delle carni direttamente nella tua casella email.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="La tua email">
-                <button type="submit">Iscriviti</button>
-            </form>
+            <h2 class="section-title">Contattaci</h2>
+            <p>Vieni a trovarci in negozio o contattaci per maggiori informazioni</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Indirizzo</h3>
+                    <p>Via Roma 123, 00100 Roma</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Telefono</h3>
+                    <p>+39 06 1234 5678</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>info@macelleriaitaliana.it</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Orari</h3>
+                    <p>Lun-Sab: 8:00-20:00<br>Domenica: Chiuso</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -787,27 +765,26 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Macelleria Online</h3>
-                    <p>La migliore selezione di carni italiane di alta qualità, consegnate direttamente a casa tua.</p>
+                    <h3>Macelleria Italiana</h3>
+                    <p>La tradizione della carne italiana dal 1970. Qualità, passione e rispetto per la tradizione.</p>
                     <div class="social-icons">
                         <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
-                    <h3>Link Utili</h3>
+                    <h3>Link Rapidi</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Chi Siamo</a></li>
-                        <li><a href="#">Prodotti</a></li>
-                        <li><a href="#">Offerte</a></li>
-                        <li><a href="#">Contatti</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">Chi Siamo</a></li>
+                        <li><a href="#products">Prodotti</a></li>
+                        <li><a href="#services">Servizi</a></li>
+                        <li><a href="#history">Storia</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Categorie</h3>
+                    <h3>Prodotti</h3>
                     <ul>
                         <li><a href="#">Carne Bovina</a></li>
                         <li><a href="#">Carne Suina</a></li>
@@ -819,37 +796,61 @@
                 <div class="footer-column">
                     <h3>Contatti</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Via Roma 123, 00100 Roma</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Via Roma 123, Roma</li>
                         <li><i class="fas fa-phone"></i> +39 06 1234 5678</li>
-                        <li><i class="fas fa-envelope"></i> info@macelleriaonline.it</li>
-                        <li><i class="fas fa-clock"></i> Lun-Sab: 8:00-20:00</li>
+                        <li><i class="fas fa-envelope"></i> info@macelleriaitaliana.it</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Macelleria Online. Tutti i diritti riservati.</p>
+                <p>&copy; 2023 Macelleria Italiana. Tutti i diritti riservati.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Simple script for cart functionality
+        // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
-            const addToCartButtons = document.querySelectorAll('.product-actions .btn');
-            const cartCount = document.querySelector('.header-actions .action-item:last-child span');
-            let count = 0;
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const nav = document.querySelector('nav');
             
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    count++;
-                    cartCount.textContent = `Carrello (${count})`;
+            mobileMenu.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    // Simple animation feedback
-                    this.textContent = 'Aggiunto!';
-                    setTimeout(() => {
-                        this.textContent = 'Aggiungi al Carrello';
-                    }, 1000);
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu after clicking a link
+                        if(nav.classList.contains('active')) {
+                            nav.classList.remove('active');
+                        }
+                    }
                 });
+            });
+            
+            // Header background on scroll
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if(window.scrollY > 100) {
+                    header.style.background = 'rgba(255,255,255,0.95)';
+                    header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.background = 'var(--white)';
+                    header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+                }
             });
         });
     </script>
