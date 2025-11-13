@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Siamo - Norcineria Taccalite Paolo | Eccellenza nella Carne dal 1975</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #2c3e50;
+            --accent-color: #c0392b;
+            --light-color: #fefefe;
+            --dark-color: #1a1a1a;
+            --gold-color: #d4af37;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--secondary-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .header-scrolled {
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+            margin-right: 15px;
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(5deg);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            line-height: 1.1;
+        }
+
+        .logo p {
+            font-size: 12px;
+            color: var(--primary-color);
+            letter-spacing: 1.5px;
+            margin-top: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 40px;
+            position: relative;
+        }
+
+        nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 50px;
+            background: linear-gradient(to right, rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.4)), url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/94097425_128498255452626_1830240368331849728_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=nUEO9ugVW_UQ7kNvwGtJlQq&_nc_oc=Adlt3g3Tgw05Uhlyll1oADY7cJmlunrPUjb5H0bY_v0mprUROmLBE2QMBMhXoF0tTmA&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=OK9WoimOjjmY8HUaBR2ewQ&oh=00_Afg2HEDm3jH6s0HmUxuPIUCssanaA6wqiZkz0FIZATZR7g&oe=693D4C8C');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            margin-left: 10%;
+            color: white;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .page-hero-content.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .page-hero p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-color);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Sezioni */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 48px;
+            color: var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #777;
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-weight: 300;
+        }
+
+        /* Storia */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .timeline-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .timeline-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+
+        /* Filosofia */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .value-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .value-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .value-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(231, 76, 60, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--primary-color);
+            font-size: 32px;
+        }
+
+        .value-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .value-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .team-member.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .member-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 5px solid white;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .member-photo img {
+            transform: scale(1.1);
+        }
+
+        .team-member h3 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+        }
+
+        .team-member p {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .team-member .member-desc {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Qualità */
+        .quality-section {
+            background-color: #f9f9f9;
+            padding: 100px 0;
+        }
+
+        .quality-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .quality-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .quality-image.animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .quality-text {
+            transform: translateX(50px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .quality-text.animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .quality-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .quality-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+        }
+
+        .quality-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 80px 0 20px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ecf0f1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 300;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: #34495e;
+            border-radius: 50%;
+            transition: var(--transition);
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .page-hero h1 {
+                font-size: 54px;
+            }
+            
+            .section-title h2 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 19px;
+            }
+            
+            .timeline-item:nth-child(even)::after {
+                left: 19px;
+            }
+            
+            .quality-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .quality-image, .quality-text {
+                transform: none;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                padding: 20px 0;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .page-hero h1 {
+                font-size: 36px;
+            }
+            
+            .page-hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 36px;
+            }
+            
+            .page-hero-content {
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-hero h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="Logo Norcineria Taccalite Paolo">
+                    <div class="logo-text">
+                        <h1>Norcineria Taccalite Paolo</h1>
+                        <p>Eccellenza nella carne dal 1975</p>
+                    </div>
+                </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="chi siamo.html" class="active">Chi Siamo</a></li>
+                        <li><a href="contatti.html">Contatti</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="page-hero-content" id="pageHeroContent">
+            <h1>La Nostra Storia</h1>
+            <p>Quasi 50 anni di passione, tradizione e innovazione nell'arte della norcineria</p>
+            <a href="#storia" class="btn">Scopri di Più</a>
+        </div>
+    </section>
+
+    <!-- Storia -->
+    <section id="storia" class="storia">
+        <div class="container">
+            <div class="section-title">
+                <h2>La Nostra Storia</h2>
+                <p class="section-subtitle">Un viaggio attraverso quasi cinque decenni di eccellenza nella lavorazione delle carni</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1975 - Le Origini</h3>
+                        <p>Paolo Taccalite fonda la norcineria nel cuore di Ancona, con un piccolo banco al Mercato Piazza d'Armi. Da subito si distingue per la qualità delle carni e l'attenzione ai dettagli.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1985 - La Prima Espansione</h3>
+                        <p>Dopo 10 anni di successo, l'attività si espande con un nuovo laboratorio di lavorazione. Vengono introdotte tecniche di stagionatura tradizionali che diventano il fiore all'occhiello dell'azienda.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1995 - La Seconda Generazione</h3>
+                        <p>Il figlio di Paolo, Marco, entra in azienda portando nuove idee e innovazioni, pur mantenendo le tradizioni di famiglia. Viene ampliata la gamma di salumi artigianali.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2005 - Riconoscimenti</h3>
+                        <p>La Norcineria Taccalite Paolo riceve il premio "Eccellenza Marchigiana" per la qualità dei suoi prodotti e il rispetto delle tradizioni regionali.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2015 - La Terza Generazione</h3>
+                        <p>La nipote di Paolo, Giulia, si unisce all'azienda portando una visione moderna e l'attenzione alla sostenibilità. Vengono stabilite partnership con allevamenti locali selezionati.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Oggi - Tradizione e Innovazione</h3>
+                        <p>Oggi la Norcineria Taccalite Paolo è un punto di riferimento per gli amanti della carne di qualità, coniugando sapientemente tradizione e innovazione in ogni prodotto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filosofia -->
+    <section id="filosofia" class="filosofia">
+        <div class="container">
+            <div class="section-title">
+                <h2>La Nostra Filosofia</h2>
+                <p class="section-subtitle">I valori che guidano il nostro lavoro ogni giorno</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Passione</h3>
+                    <p>La nostra forza motrice è l'amore per il lavoro ben fatto. Trasmettiamo questa passione in ogni prodotto, dalla selezione delle materie prime alla lavorazione finale.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Tradizione</h3>
+                    <p>Rispettiamo e preserviamo le antiche tecniche di norcineria marchigiana, consapevoli che la tradizione è il fondamento della qualità autentica.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sostenibilità</h3>
+                    <p>Scegliamo solo fornitori che rispettano il benessere animale e l'ambiente, contribuendo a preservare il territorio per le generazioni future.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Qualità</h3>
+                    <p>Non accettiamo compromessi quando si tratta di qualità. Ogni prodotto deve superare i nostri severi standard prima di arrivare al cliente.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Comunità</h3>
+                    <p>Siamo parte integrante della comunità anconetana e ci impegniamo a sostenere l'economia locale attraverso partnership con produttori territoriali.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovazione</h3>
+                    <p>Pur rispettando la tradizione, siamo sempre aperti a nuove tecniche e tecnologie che possano migliorare i nostri processi e prodotti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+
+    <!-- Qualità -->
+    <section id="qualita" class="quality-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>La Nostra Qualità</h2>
+                <p class="section-subtitle">Il rigore e l'attenzione che mettiamo in ogni fase del processo</p>
+            </div>
+            <div class="quality-content">
+                <div class="quality-image" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/93569438_129031912065927_1603893087866716160_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=Q4_dKHhB24sQ7kNvwHEajcN&_nc_oc=AdnbnnI31q3FRKLXdmOrRPSNO1t0q8Dolie2Ak3nJynLfghQhsOTlAptvraNvzThnA8&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=L0n4XbvC2oFTIG8Oh_E-ew&oh=00_AfhhEPBDlTM8jGVTREGi68o2RsLBcge_fm84-7BaWmHZcw&oe=693D4B99')"></div>
+                <div class="quality-text">
+                    <h3>L'Eccellenza in Ogni Dettaglio</h3>
+                    <p>La nostra ricerca della perfezione inizia molto prima che la carne arrivi nel nostro laboratorio. Selezioniamo personalmente ogni allevatore, visitando regolarmente gli allevamenti per verificare le condizioni di vita degli animali e la qualità della loro alimentazione.</p>
+                    <p>Crediamo che solo partendo da materie prime eccellenti si possano creare prodotti straordinari. Per questo ogni fase del nostro processo è curata con attenzione maniacale:</p>
+                    <ul class="quality-list">
+                        <li>Selezione rigorosa di allevamenti locali e sostenibili</li>
+                        <li>Controlli qualità in ogni fase della lavorazione</li>
+                        <li>Rispetto dei tempi di maturazione e stagionatura</li>
+                        <li>Utilizzo esclusivo di metodi tradizionali</li>
+                        <li>Tracciabilità completa di ogni prodotto</li>
+                        <li>Formazione continua del nostro personale</li>
+                    </ul>
+                    <p>Il risultato è una gamma di prodotti che esprime appieno il carattere del territorio marchigiano, con sapori autentici che raccontano la nostra storia e la nostra passione.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Norcineria Taccalite Paolo</h3>
+                    <p>Dal 1975, punto di riferimento per la carne di qualità ad Ancona. Passione, tradizione e innovazione nella lavorazione delle carni.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100054657690138" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-tripadvisor"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Link Veloci</h3>
+                    <a href="index.html">Home</a>
+                    <a href="prodotti.html">Prodotti</a>
+                    <a href="chi-siamo.html">Chi Siamo</a>
+                    <a href="contatti.html">Contatti</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contatti</h3>
+                    <p>Mercato Piazza d'Armi, 60127 Ancona</p>
+                    <p>+39 071 897903</p>
+                    <p>info@taccalitepaolo.it</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Orari di Apertura</h3>
+                    <p>Lunedì - Sabato: 7:00-13:00, 16:00-20:00</p>
+                    <p>Domenica: Chiuso</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 1975 Norcineria Taccalite Paolo | Iva: 03007180429 | Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    
+                    // Animation pour la timeline
+                    if (entry.target.classList.contains('storia')) {
+                        const timelineItems = document.querySelectorAll('.timeline-item');
+                        timelineItems.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('animate');
+                            }, index * 300);
+                        });
+                    }
+                    
+                    // Animation pour les cartes valeurs
+                    if (entry.target.classList.contains('filosofia')) {
+                        const valueCards = document.querySelectorAll('.value-card');
+                        valueCards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('animate');
+                            }, index * 200);
+                        });
+                    }
+                    
+                    // Animation pour les membres de l'équipe
+                    if (entry.target.classList.contains('team')) {
+                        const teamMembers = document.querySelectorAll('.team-member');
+                        teamMembers.forEach((member, index) => {
+                            setTimeout(() => {
+                                member.classList.add('animate');
+                            }, index * 300);
+                        });
+                    }
+                    
+                    // Animation pour la section qualité
+                    if (entry.target.classList.contains('quality-section')) {
+                        const qualityImage = document.querySelector('.quality-image');
+                        const qualityText = document.querySelector('.quality-text');
+                        
+                        setTimeout(() => {
+                            qualityImage.classList.add('animate');
+                        }, 300);
+                        
+                        setTimeout(() => {
+                            qualityText.classList.add('animate');
+                        }, 600);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observer les sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Animation du contenu hero
+        setTimeout(() => {
+            const pageHeroContent = document.getElementById('pageHeroContent');
+            pageHeroContent.classList.add('animate');
+        }, 500);
+    </script>
+</body>
+</html>

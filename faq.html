@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Norcineria Taccalite Paolo | Domande Frequenti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #2c3e50;
+            --accent-color: #c0392b;
+            --light-color: #fefefe;
+            --dark-color: #1a1a1a;
+            --gold-color: #d4af37;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--secondary-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .header-scrolled {
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+            margin-right: 15px;
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(5deg);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            line-height: 1.1;
+        }
+
+        .logo p {
+            font-size: 12px;
+            color: var(--primary-color);
+            letter-spacing: 1.5px;
+            margin-top: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 40px;
+            position: relative;
+        }
+
+        nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            height: 50vh;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 50px;
+            background: linear-gradient(to right, rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.4)), url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/93569438_129031912065927_1603893087866716160_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=Q4_dKHhB24sQ7kNvwHEajcN&_nc_oc=AdnbnnI31q3FRKLXdmOrRPSNO1t0q8Dolie2Ak3nJynLfghQhsOTlAptvraNvzThnA8&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=7KgtCHM6A7qsLGPavm8BmQ&oh=00_Afhc_XFY_D-3hJhgtcKN6zwSxS1bVQiS39vavYTSqvkR6w&oe=693D4B99');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            margin-left: 10%;
+            color: white;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .page-hero-content.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .page-hero p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-color);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Sezioni */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 48px;
+            color: var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #777;
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-weight: 300;
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-category {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .faq-category.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-category h3 {
+            font-size: 32px;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(231, 76, 60, 0.2);
+            position: relative;
+        }
+
+        .faq-category h3:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: -2px;
+            left: 0;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background-color: white;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: #f9f9f9;
+        }
+
+        .faq-question.active {
+            background-color: rgba(231, 76, 60, 0.05);
+            color: var(--primary-color);
+        }
+
+        .faq-icon {
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            background-color: white;
+        }
+
+        .faq-answer.active {
+            padding: 0 30px 25px;
+            max-height: 1000px;
+        }
+
+        .faq-answer p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .faq-answer ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 8px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background-color: #f9f9f9;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .contact-cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .contact-cta p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 80px 0 20px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ecf0f1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 300;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: #34495e;
+            border-radius: 50%;
+            transition: var(--transition);
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .page-hero h1 {
+                font-size: 54px;
+            }
+            
+            .section-title h2 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                padding: 20px 0;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .page-hero h1 {
+                font-size: 36px;
+            }
+            
+            .page-hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 36px;
+            }
+            
+            .page-hero-content {
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+            
+            .faq-question {
+                padding: 20px;
+                font-size: 16px;
+            }
+            
+            .faq-answer {
+                padding: 0 20px;
+            }
+            
+            .faq-answer.active {
+                padding: 0 20px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-hero h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-category h3 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="Logo Norcineria Taccalite Paolo">
+                    <div class="logo-text">
+                        <h1>Norcineria Taccalite Paolo</h1>
+                        <p>Eccellenza nella carne dal 1975</p>
+                    </div>
+                </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="chi siamo.html">Chi Siamo</a></li>
+                        <li><a href="faq.html" class="active">FAQ</a></li>
+                        <li><a href="contatti.html">Contatti</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="page-hero-content" id="pageHeroContent">
+            <h1>Domande Frequenti</h1>
+            <p>Tutto quello che devi sapere sui nostri prodotti e servizi</p>
+            <a href="#faq" class="btn">Esplora le FAQ</a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>FAQ</h2>
+                <p class="section-subtitle">Risposte alle domande più comuni sui nostri prodotti e servizi</p>
+            </div>
+            <div class="faq-container">
+                <!-- Categoria Prodotti -->
+                <div class="faq-category">
+                    <h3>Prodotti e Qualità</h3>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Da dove proviene la carne che vendete?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Selezioniamo personalmente ogni fornitore, privilegiando allevamenti locali delle Marche e di regioni limitrofe. Tutti i nostri allevatori condividono la nostra filosofia basata sul benessere animale, sull'alimentazione naturale e sui metodi di allevamento sostenibili.</p>
+                            <p>La tracciabilità è per noi fondamentale: possiamo fornirti informazioni dettagliate sull'origine di ogni taglio di carne che acquisti.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Qual è la differenza tra i vostri salumi e quelli industriali?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I nostri salumi sono completamente artigianali e prodotti seguendo antiche ricette marchigiane. Le principali differenze sono:</p>
+                            <ul>
+                                <li>Utilizziamo solo carni di alta qualità, senza additivi artificiali</li>
+                                <li>I tempi di stagionatura sono rispettosi delle tradizioni, più lunghi rispetto ai prodotti industriali</li>
+                                <li>Non utilizziamo conservanti oltre al sale necessario</li>
+                                <li>La lavorazione è completamente manuale, che preserva le caratteristiche organolettiche della carne</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Fate prodotti senza glutine o adatti a diete specifiche?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sì, molti dei nostri prodotti sono naturalmente senza glutine. In particolare:</p>
+                            <ul>
+                                <li>Tutti i nostri salumi stagionati (prosciutti, salami, coppe) sono senza glutine</li>
+                                <li>Le carni fresche sono ovviamente senza glutine</li>
+                                <li>Alcuni insaccati freschi potrebbero contenere tracce, ma possiamo fornirti informazioni dettagliate su ogni prodotto</li>
+                            </ul>
+                            <p>Per qualsiasi esigenza dietetica specifica, i nostri esperti sono a disposizione per consigliarti i prodotti più adatti.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Come conservare correttamente i vostri prodotti?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>La corretta conservazione è essenziale per mantenere intatte le qualità dei nostri prodotti:</p>
+                            <ul>
+                                <li><strong>Carne fresca:</strong> in frigorifero a 0-4°C, consumare entro 2-3 giorni</li>
+                                <li><strong>Salumi stagionati:</strong> in luogo fresco e asciutto, avvolti in panno di cotone o carta per alimenti</li>
+                                <li><strong>Salumi affettati:</strong> in frigorifero, ben coperti, consumare entro 3-4 giorni</li>
+                                <li><strong>Prodotti congelati:</strong> mantenere a -18°C e scongelare lentamente in frigorifero</li>
+                            </ul>
+                            <p>Su ogni acquisto, forniamo consigli di conservazione specifici per il prodotto.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoria Servizi -->
+                <div class="faq-category">
+                    <h3>Servizi e Ordini</h3>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Fate consegne a domicilio?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sì, offriamo il servizio di consegna a domicilio all'interno del comune di Ancona e zone limitrofe. Il servizio è attivo con le seguenti modalità:</p>
+                            <ul>
+                                <li>Consegna gratuita per ordini superiori a €50</li>
+                                <li>Costo di consegna di €5 per ordini inferiori a €50</li>
+                                <li>Consegne dal lunedì al sabato, negli orari 10:00-13:00 e 16:00-19:00</li>
+                                <li>Possibilità di prenotare una fascia oraria specifica</li>
+                            </ul>
+                            <p>Per ordinazioni e informazioni sulle consegne, puoi chiamarci direttamente in negozio.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Posso prenotare tagli di carne specifici?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Certamente! Anzi, ti consigliamo di prenotare i tagli più ricercati con qualche giorno di anticipo, specialmente in occasioni festive o per tagli particolari come:</p>
+                            <ul>
+                                <li>Fiorentine e bistecche di manzo di alta qualità</li>
+                                <li>Arrosti per occasioni speciali</li>
+                                <li>Tagli di selvaggina in stagione</li>
+                                <li>Preparazioni particolari come carpacci o carne per tartare</li>
+                            </ul>
+                            <p>La prenotazione ci permette di selezionare per te il miglior prodotto disponibile e di prepararlo secondo le tue esigenze.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Fate preparazioni su misura?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sì, siamo specializzati in preparazioni personalizzate secondo le tue preferenze:</p>
+                            <ul>
+                                <li>Taglio della carne secondo lo spessore desiderato</li>
+                                <li>Disossamento e preparazione di carni per arrosti</li>
+                                <li>Marinature personalizzate con i nostri ingredienti</li>
+                                <li>Preparazione di spiedini e involtini</li>
+                                <li>Lardellatura e preparazione di carni per brasati</li>
+                            </ul>
+                            <p>Il nostro personale esperto è a tua disposizione per consigliarti la preparazione migliore per ogni tipo di cottura.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Accettate pagamenti con carta di credito?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sì, accettiamo diverse modalità di pagamento:</p>
+                            <ul>
+                                <li>Contanti</li>
+                                <li>Carte di credito e debito (Visa, MasterCard, Maestro)</li>
+                                <li>Bancomat</li>
+                                <li>Satispay</li>
+                            </ul>
+                            <p>Per gli ordini online o telefonicamente, il pagamento avviene al momento della consegna, con tutte le modalità sopra indicate.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoria Generale -->
+                <div class="faq-category">
+                    <h3>Informazioni Generali</h3>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Quali sono i vostri orari di apertura?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I nostri orari di apertura sono:</p>
+                            <ul>
+                                <li><strong>Lunedì - Sabato:</strong> 7:00 - 13:00 e 16:00 - 20:00</li>
+                                <li><strong>Domenica:</strong> Chiuso</li>
+                            </ul>
+                            <p>Nei giorni prefestivi gli orari potrebbero subire variazioni, che comunichiamo tempestivamente sulla nostra pagina Facebook e tramite avvisi in negozio.</p>
+                            <p>Per le festività principali (Natale, Pasqua, Ferragosto) organizziamo aperture straordinarie che annunciamo con anticipo.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Siete aperti durante le festività?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Le nostre aperture durante le festività seguono questo calendario:</p>
+                            <ul>
+                                <li><strong>Natale/Capodanno:</strong> Aperti fino al 24 dicembre, chiusi il 25 e 26 dicembre. Aperti il 31 dicembre, chiusi il 1° gennaio</li>
+                                <li><strong>Pasqua:</strong> Aperti il sabato prima di Pasqua, chiusi la domenica e il lunedì di Pasquetta</li>
+                                <li><strong>Ferragosto:</strong> Chiusi il 15 agosto</li>
+                                <li><strong>Festa di San Ciriaco (patrono di Ancona):</strong> Orari speciali che comunichiamo in anticipo</li>
+                            </ul>
+                            <p>Consigliamo sempre di verificare gli orari specifici sulle nostre pagine social o contattandoci telefonicamente.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Offrite servizi per ristoranti o attività commerciali?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sì, collaboriamo con numerosi ristoranti, agriturismi e attività della ristorazione di Ancona e provincia. Offriamo:</p>
+                            <ul>
+                                <li>Fornitura regolare di carni e salumi di alta qualità</li>
+                                <li>Preparazioni su misura secondo le esigenze dello chef</li>
+                                <li>Consulenza sulla selezione dei tagli più adatti ai diversi menu</li>
+                                <li>Condizioni commerciali dedicate per gli operatori del settore</li>
+                            </ul>
+                            <p>Per informazioni specifiche sulle collaborazioni commerciali, invitiamo i ristoratori a contattarci per un appuntamento.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Organizzate eventi o degustazioni?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Periodicamente organizziamo eventi per far conoscere i nostri prodotti e le tradizioni della norcineria marchigiana:</p>
+                            <ul>
+                                <li><strong>Degustazioni guidate:</strong> Per piccoli gruppi, su prenotazione</li>
+                                <li><strong>Eventi tematici:</strong> Focus su specifici prodotti o tecniche di lavorazione</li>
+                                <li><strong>Collaborazioni con chef:</strong> Cene e dimostrazioni di cucina</li>
+                                <li><strong>Partecipazione a sagre e eventi locali:</strong> Dove presentiamo i nostri prodotti</li>
+                            </ul>
+                            <p>Tutti gli eventi vengono annunciati con anticipo sulla nostra pagina Facebook e tramite newsletter. Iscriviti alla nostra mailing list per rimanere aggiornato!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <div class="contact-cta-content">
+                <h2>Non hai trovato la risposta che cercavi?</h2>
+                <p>Contattaci direttamente, siamo a tua disposizione per qualsiasi domanda o informazione aggiuntiva.</p>
+                <a href="contatti.html" class="btn">Contattaci</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Norcineria Taccalite Paolo</h3>
+                    <p>Dal 1975, punto di riferimento per la carne di qualità ad Ancona. Passione, tradizione e innovazione nella lavorazione delle carni.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100054657690138" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-tripadvisor"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Link Veloci</h3>
+                    <a href="index.html">Home</a>
+                    <a href="chi-siamo.html">Chi Siamo</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="contatti.html">Contatti</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contatti</h3>
+                    <p>Mercato Piazza d'Armi, 60127 Ancona</p>
+                    <p>+39 071 897903</p>
+                    <p>info@taccalitepaolo.it</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Orari di Apertura</h3>
+                    <p>Lunedì - Sabato: 7:00-13:00, 16:00-20:00</p>
+                    <p>Domenica: Chiuso</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 1975 Norcineria Taccalite Paolo | Iva: 03007180429 | Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isActive = this.classList.contains('active');
+                
+                // Chiudi tutte le risposte
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                });
+                
+                // Apri la risposta corrente se non era già attiva
+                if (!isActive) {
+                    this.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    
+                    // Animation pour les catégories FAQ
+                    if (entry.target.classList.contains('faq')) {
+                        const faqCategories = document.querySelectorAll('.faq-category');
+                        faqCategories.forEach((category, index) => {
+                            setTimeout(() => {
+                                category.classList.add('animate');
+                            }, index * 300);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observer les sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Animation du contenu hero
+        setTimeout(() => {
+            const pageHeroContent = document.getElementById('pageHeroContent');
+            pageHeroContent.classList.add('animate');
+        }, 500);
+    </script>
+</body>
+</html>
