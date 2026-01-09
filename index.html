@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Norcineria Taccalite Paolo - Eccellenza nella Carne dal 1946</title>
+    <title>Norcineria Taccalite Paolo - Manutenzione</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset e base */
         * {
             margin: 0;
             padding: 0;
@@ -21,1651 +20,435 @@
             --light-color: #fefefe;
             --dark-color: #1a1a1a;
             --gold-color: #d4af37;
-            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            overflow-x: hidden;
-            line-height: 1.6;
             font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        /* Page de chargement RARE */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background: linear-gradient(135deg, var(--secondary-color) 0%, #1a1a2e 50%, #16213e 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 9999;
-            transition: opacity 1.2s ease-out, visibility 1.2s ease-out;
-            overflow: hidden;
-        }
-
-        .loader-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .loader-logo {
-            width: 120px;
-            height: 120px;
-            position: absolute;
-            animation: logoFloat 4s ease-in-out infinite;
-            filter: brightness(0) invert(1);
-            z-index: 3;
-        }
-
-        .loader-orb {
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            border: 3px solid rgba(231, 76, 60, 0.3);
-            border-radius: 50%;
-            animation: orbRotate 8s linear infinite;
-        }
-
-        .loader-orb::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            box-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
-        }
-
-        .loader-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--gold-color);
-            border-radius: 50%;
-            animation: particleFloat 6s infinite linear;
-        }
-
-        .loader-text {
             color: white;
-            font-size: 18px;
-            letter-spacing: 4px;
-            margin-top: 40px;
-            font-weight: 300;
-            text-transform: uppercase;
-            position: relative;
-        }
-
-        .loader-text::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--primary-color);
-            transform: scaleX(0);
-            transform-origin: left;
-            animation: textLine 2s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        @keyframes orbRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes particleFloat {
-            0% { 
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-            50% { 
-                transform: translate(var(--tx, 100px), var(--ty, -100px)) scale(1.5);
-                opacity: 0.7;
-            }
-            100% { 
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes textLine {
-            0%, 100% { transform: scaleX(0); }
-            50% { transform: scaleX(1); }
-        }
-
-        /* Header */
-        header {
-            background-color: rgba(255, 255, 255, 0.95);
-            color: var(--secondary-color);
-            padding: 15px 0;
-            box-shadow: 0 2px 30px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: var(--transition);
-        }
-
-        .header-scrolled {
-            padding: 10px 0;
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.98);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 100px;
-            margin-right: 15px;
-            transition: transform 0.5s ease;
-        }
-
-        .logo:hover img {
-            transform: rotate(5deg);
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--secondary-color);
-            line-height: 1.1;
-        }
-
-        .logo p {
-            font-size: 12px;
-            color: var(--primary-color);
-            letter-spacing: 1.5px;
-            margin-top: 5px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav li {
-            margin-left: 40px;
-            position: relative;
-        }
-
-        nav a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: var(--transition);
-            position: relative;
-            padding: 5px 0;
-            letter-spacing: 0.5px;
-        }
-
-        nav a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover:after {
-            width: 100%;
-        }
-
-        nav a:hover {
-            color: var(--primary-color);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
             height: 100vh;
-            position: relative;
             overflow: hidden;
-            margin-bottom: 50px;
-        }
-
-        .slideshow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            transform: scale(1.1);
-        }
-
-        .slide.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.4));
             display: flex;
+            justify-content: center;
             align-items: center;
-        }
-
-        .hero-content {
-            max-width: 700px;
-            margin-left: 10%;
-            color: white;
-            transform: translateY(50px);
-            opacity: 0;
-            transition: all 1s ease;
-        }
-
-        .hero-content.animate {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .hero h2 {
-            font-size: 64px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 22px;
-            margin-bottom: 40px;
+            text-align: center;
             line-height: 1.6;
-            font-weight: 300;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            letter-spacing: 1px;
+        .maintenance-container {
+            max-width: 800px;
+            padding: 40px;
             position: relative;
-            overflow: hidden;
-            z-index: 1;
+            z-index: 10;
         }
 
-        .btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--accent-color);
-            transition: all 0.5s ease;
-            z-index: -1;
+        .logo-container {
+            margin-bottom: 40px;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .btn:hover:before {
-            left: 0;
+        .logo-maintenance {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
         }
 
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        .hero-scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-align: center;
-            animation: bounce 2s infinite;
-        }
-
-        .hero-scroll-indicator i {
-            display: block;
-            margin-top: 10px;
-            font-size: 20px;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) translateX(-50%);
-            }
-            40% {
-                transform: translateY(-10px) translateX(-50%);
-            }
-            60% {
-                transform: translateY(-5px) translateX(-50%);
-            }
-        }
-
-        /* Sezioni */
-        section {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 80px;
-            position: relative;
-        }
-
-        .section-title h2 {
+        h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 48px;
-            color: var(--secondary-color);
-            display: inline-block;
-            padding-bottom: 15px;
             font-weight: 700;
-            position: relative;
+            margin-bottom: 20px;
+            color: white;
+            letter-spacing: 1px;
         }
 
-        .section-title h2:after {
+        .highlight {
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
             content: '';
             position: absolute;
-            width: 100px;
-            height: 3px;
-            background-color: var(--primary-color);
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: #777;
-            max-width: 700px;
-            margin: 20px auto 0;
-            font-weight: 300;
-        }
-
-        /* Prodotti */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .product-card {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: var(--transition);
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .product-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .product-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .product-img {
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.8s ease;
-            position: relative;
-        }
-
-        .product-card:hover .product-img {
-            transform: scale(1.1);
-        }
-
-        .product-overlay {
-            position: absolute;
-            top: 0;
+            bottom: 5px;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
-            display: flex;
-            align-items: flex-end;
-            padding: 20px;
-            opacity: 0;
-            transition: var(--transition);
+            height: 3px;
+            background: var(--gold-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            animation: lineGrow 3s ease-in-out infinite;
         }
 
-        .product-card:hover .product-overlay {
-            opacity: 1;
-        }
-
-        .product-info {
-            padding: 30px;
-        }
-
-        .product-info h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-
-        .product-info p {
-            color: #777;
-            margin-bottom: 20px;
-            line-height: 1.6;
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #ecf0f1;
             font-weight: 300;
+            letter-spacing: 1px;
         }
 
-        .product-price {
-            font-size: 20px;
+        .message {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #bdc3c7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px 15px;
+            min-width: 120px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .countdown-value {
+            font-size: 42px;
             font-weight: 700;
             color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
         }
 
-        /* Informazioni */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            height: 500px;
-            background-size: cover;
-            background-position: center;
-            transform: translateX(-50px);
-            opacity: 0;
-            transition: all 1s ease;
-        }
-
-        .about-image.animate {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        .about-text {
-            transform: translateX(50px);
-            opacity: 0;
-            transition: all 1s ease;
-        }
-
-        .about-text.animate {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        .info-section {
-            background-color: #fff;
-            border-radius: 12px;
-            padding: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-            border-left: 4px solid var(--primary-color);
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.8s ease;
-        }
-
-        .info-section.animate {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .info-section h3 {
-            font-size: 28px;
-            color: var(--secondary-color);
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .info-section h3:after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 2px;
-            background-color: var(--primary-color);
-            bottom: 0;
-            left: 0;
-        }
-
-        .info-section p {
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: #555;
-            font-weight: 300;
-        }
-
-        /* Mappa */
-        #map {
-            height: 500px;
-            margin-top: 30px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.8s ease;
-        }
-
-        #map.animate {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 80px 0 20px;
-            position: relative;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 60px;
-        }
-
-        .footer-column h3 {
-            font-size: 22px;
-            margin-bottom: 25px;
-            color: var(--primary-color);
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 2px;
-            background-color: var(--primary-color);
-            bottom: 0;
-            left: 0;
-        }
-
-        .footer-column p, .footer-column a {
+        .countdown-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             color: #ecf0f1;
-            line-height: 1.8;
-            margin-bottom: 15px;
-            display: block;
-            text-decoration: none;
-            transition: var(--transition);
-            font-weight: 300;
         }
 
-        .footer-column a:hover {
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .contact-info h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--gold-color);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            color: #ecf0f1;
+        }
+
+        .contact-info a {
             color: var(--primary-color);
-            padding-left: 5px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold-color);
+            text-decoration: underline;
         }
 
         .social-links {
             display: flex;
+            justify-content: center;
             gap: 15px;
-            margin-top: 25px;
+            margin-top: 30px;
         }
 
         .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
-            background-color: #34495e;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            transition: var(--transition);
-            font-size: 18px;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .social-links a:hover {
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
         }
 
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #34495e;
-            color: #bdc3c7;
-            font-size: 14px;
-            font-weight: 300;
-        }
-
-        /* Parallax Section */
-        .parallax-section {
-            height: 500px;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-
-        .parallax-overlay {
+        .particles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.6);
-        }
-
-        .parallax-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .parallax-content h2 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .parallax-content p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-
-        /* Testimonials Améliorés */
-        .testimonials {
-            background-color: #f9f9f9;
-            padding: 100px 0;
-        }
-
-        .testimonials-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .testimonial-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonial-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .testimonial-card::before {
-            content: """;
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 80px;
-            color: rgba(231, 76, 60, 0.1);
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-
-        .rating {
-            margin-bottom: 15px;
-            display: flex;
-        }
-
-        .star {
-            color: #ffc107;
-            margin-right: 3px;
-            font-size: 18px;
-        }
-
-        .testimonial-text {
-            font-size: 16px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            color: #555;
-            font-style: italic;
-            position: relative;
             z-index: 1;
         }
 
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
+        .particle {
+            position: absolute;
+            background: var(--gold-color);
             border-radius: 50%;
-            overflow: hidden;
-            margin-right: 15px;
-            border: 3px solid var(--primary-color);
+            opacity: 0.3;
+            animation: particleFloat linear infinite;
         }
 
-        .author-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .author-info h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
-            color: var(--secondary-color);
-        }
-
-        .author-info p {
-            font-size: 14px;
-            color: #777;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #2c3e50 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .stat-item {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .stat-item.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 10px;
+        .maintenance-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
             color: var(--primary-color);
-            font-family: 'Playfair Display', serif;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .stat-label {
-            font-size: 18px;
-            font-weight: 300;
-            letter-spacing: 1px;
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes lineGrow {
+            0% { transform: scaleX(0); transform-origin: right; }
+            50% { transform: scaleX(1); transform-origin: right; }
+            51% { transform-origin: left; }
+            100% { transform: scaleX(0); transform-origin: left; }
+        }
+
+        @keyframes particleFloat {
+            to { transform: translateY(-100vh); }
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .hero h2 {
-                font-size: 54px;
-            }
-            
-            .section-title h2 {
-                font-size: 42px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .about-image, .about-text {
-                transform: none;
-            }
-            
-            .hero h2 {
-                font-size: 48px;
-            }
-            
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                padding: 20px 0;
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav li {
-                margin: 10px 0;
-                text-align: center;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
+            .maintenance-container {
+                padding: 20px;
             }
             
-            .logo {
-                margin-bottom: 15px;
-            }
-            
-            .hero h2 {
+            h1 {
                 font-size: 36px;
             }
             
-            .hero p {
-                font-size: 18px;
+            .subtitle {
+                font-size: 20px;
             }
             
-            .section-title h2 {
-                font-size: 36px;
+            .countdown-item {
+                min-width: 100px;
+                padding: 15px 10px;
             }
             
-            .hero-content {
-                margin-left: 5%;
-                margin-right: 5%;
+            .countdown-value {
+                font-size: 32px;
             }
             
-            .info-section {
-                padding: 30px;
-            }
-            
-            .parallax-content h2 {
-                font-size: 36px;
-            }
-            
-            .parallax-content p {
-                font-size: 18px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .maintenance-icon {
+                font-size: 60px;
             }
         }
 
         @media (max-width: 576px) {
-            .products-grid {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 28px;
             }
             
-            .hero h2 {
-                font-size: 32px;
+            .subtitle {
+                font-size: 18px;
             }
             
-            .section-title h2 {
-                font-size: 32px;
+            .message {
+                font-size: 16px;
             }
             
-            .footer-content {
-                grid-template-columns: 1fr;
+            .countdown {
+                gap: 10px;
             }
             
-            .stats-grid {
-                grid-template-columns: 1fr;
+            .countdown-item {
+                min-width: 80px;
+                padding: 12px 8px;
             }
             
-            .stat-number {
-                font-size: 36px;
+            .countdown-value {
+                font-size: 28px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Page de chargement RARE -->
-    <div id="loader">
-        <div class="loader-container">
-            <div class="loader-orb"></div>
-            <img src="logo.png" alt="Logo Norcineria Taccalite Paolo" class="loader-logo">
-            <div class="loader-particles" id="particles"></div>
-        </div>
-        <div class="loader-text">NORCINERIA TACCALITE</div>
-    </div>
-
-    <!-- Header -->
-    <header id="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="logo.png" alt="Logo Norcineria Taccalite Paolo">
-                    <div class="logo-text">
-                        <h1>Norcineria Taccalite Paolo</h1>
-                        <p>Eccellenza dal 1946</p>
-                    </div>
-                </div>
-                <div class="menu-toggle" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <nav>
-                    <ul id="navMenu">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="chi siamo.html">Chi Siamo</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contatti.html">Contatti</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="slideshow">
-            <!-- Les images seront ajoutées dynamiquement par JavaScript -->
-        </div>
-        <div class="hero-overlay">
-            <div class="hero-content" id="heroContent">
-                <h2>L'eccellenza della carne in ogni taglio</h2>
-                <p>Dal 1946, la nostra passione per la carne di qualità ci ha resi un punto di riferimento ad Ancona. Scopri i nostri tagli pregiati e la tradizione che ci contraddistingue.</p>
-                <a href="chi siamo.html" class="btn">Chi Siamo</a>
-            </div>
-        </div>
-        <div class="hero-scroll-indicator">
-            Scopri di più
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number" data-count="48">0</div>
-                    <div class="stat-label">Anni di Esperienza</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="10000">0</div>
-                    <div class="stat-label">Clienti Soddisfatti</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="50">0</div>
-                    <div class="stat-label"></div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="3">0</div>
-                    <div class="stat-label">Generazioni</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Prodotti 1 -->
-    <section id="prodotti" class="products">
-        <div class="container">
-            <div class="section-title">
-               
-            </div>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('img.2.jpg')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                      
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('img3.jpg')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                    
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/95415563_132585211710597_3074195616037863424_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=47TIEdrNP_kQ7kNvwEW6Dar&_nc_oc=Adk5bT-EHZ2Y1v0WXSFLyIUMC4vd8_Z1fWSFEKlOaqjNG6mu_k8QH6tKk_6oPpkwWI4&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=hvIjHJINrhM5tkzhPgrRKA&oh=00_AffYRlUxJf5pRRcLEJb3uA_p25eKRz8SwUiE7-oflNCF1A&oe=69206178')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                       
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/98519266_139207511048367_7806952343018143744_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Ur9uZn7FpIsQ7kNvwGO3hpy&_nc_oc=AdnYzLQ4ao3U1sDVQEa2XGJM_3tgxhxlsaFf8QP6-obW2IY8rHkMZ9fcVrnsyFs9jkI&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=nCqM3b1LhepwM3YnoOpGaQ&oh=00_AfcxkAh_DYs10Rh3ARdTwsubCgcWlwiVuGIGKtfPnvMQKQ&oe=692062D6')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
     
-    <!-- Prodotti 2 -->
-    <section id="prodotti" class="products">
-        <div class="container">
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('img4.jpg')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                       
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/118723739_174420017527116_3803836494778823324_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=SkwJskVXzewQ7kNvwGRBgzs&_nc_oc=Adko5fF4CuVnKJy-4xSUUltBHRciLB90oKHH5tQvDIowurA0dfC0sIqxrUVP9VsaMKE&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=DdlNK5ovKXHtg7wXfnSB7g&oh=00_AfgpVQ0l6PQMrszTw3GYr8SQMiwH9wMuEV20-eVPPhPPdQ&oe=693D5B7F')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                      
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/133651802_225586345743816_7139893636741855948_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=91sgJgnmK6wQ7kNvwFeWDBd&_nc_oc=Adlxul-qFdzPIXvDNRIO6AbLrzXSpYONWvEz2oHRFZIVO5MxDoFY8J511eMagpDRY4o&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=anKhARoG1LUsaNqQdfIisg&oh=00_Afhh76bOPb1i0defcpGw9J4IqwTXNmOvAg2JSd9jjbDVOQ&oe=693D69F7')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                      
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t39.30808-6/473020371_1121386263026620_2021108299076770901_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=pEihXyyztRoQ7kNvwEF8GHS&_nc_oc=Adm1jJEweVdORzYo1KWKVSW4UszU4TCffeHdFPLQiBiyc96FLrBlZwvZIDwga1cq37I&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=J_gfVScpEb4X_kEHxzmXHw&oh=00_AfjLB3pAKzaqTnws1OT_UkRXPDz68CHjJWggWZ3ljdB0iQ&oe=691BB22B')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                    
-                    </div>
-                </div>
+    <div class="maintenance-container">
+        <div class="logo-container">
+            <i class="fas fa-tools maintenance-icon"></i>
+            <img src="logo.png" alt="Norcineria Taccalite Paolo" class="logo-maintenance">
+        </div>
+        
+        <h1>Sito in <span class="highlight">Manutenzione</span></h1>
+        
+        <p class="subtitle">Stiamo lavorando per migliorare la tua esperienza</p>
+        
+        <div class="message">
+            La Norcineria Taccalite Paolo sta aggiornando il proprio sito web per offrirti un servizio migliore. 
+            Siamo impegnati a rendere la tua esperienza più piacevole e funzionale. 
+            Torneremo online al più presto con tante novità.
+        </div>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-value" id="days">00</div>
+                <div class="countdown-label">Giorni</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="hours">00</div>
+                <div class="countdown-label">Ore</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="minutes">00</div>
+                <div class="countdown-label">Minuti</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="seconds">00</div>
+                <div class="countdown-label">Secondi</div>
             </div>
         </div>
-    </section>
-    
-    <!-- Prodotti 3 -->
-    <section id="prodotti" class="products">
-        <div class="container">
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('img5.jpg')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903" class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                       
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('img6.jpg')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                       
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('img7.jpg')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                       
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img" style="background-image: url('img8.jpg')">
-                        <div class="product-overlay">
-                            <a href="tel:+39 071897903 " class="btn">Prenota adesso</a>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                       
-                    </div>
-                </div>
-            </div>
+        
+        <div class="contact-info">
+            <h3>Nel frattempo, puoi contattarci:</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Mercato Piazza d'Armi 59, 60127 Ancona</p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+39071897903">+39 071 897903</a></p>
+            <p><i class="fas fa-clock"></i> Lun-Sab: 7:00-13:00, 16:00-20:00</p>
+            <p>Il nostro negozio fisico rimane aperto regolarmente!</p>
         </div>
-    </section>
-
-    <!-- Parallax Section -->
-    <div class="parallax-section" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/118723739_174420017527116_3803836494778823324_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=KqVonbwl3UwQ7kNvwH7Jtmo&_nc_oc=Adkw2vwIfODiKpdTjyXOfPr5pBVe2-gr1zyqz3IDtom7rWJrG-LwFMFKMob8O-AdDp4&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=brcJoaYxzrITSesR3x8K4w&oh=00_AfcUI-m0RmWmL-INMcYaOBDYlqtxtYIVuIocRP3AWfxgkQ&oe=692092BF');">
-        <div class="parallax-overlay"></div>
-        <div class="parallax-content">
-            <h2>La tradizione che incontra l'eccellenza</h2>
-            <p>Da oltre 45 anni, portiamo sulle tavole degli anconetani il meglio della produzione carniera italiana, con un impegno costante verso la qualità e l'autenticità.</p>
-            <a href="#chi-siamo" class="btn">La Nostra Storia</a>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=100054657690138&sk=photos" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="tel:+39071897903" aria-label="Telefono">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="https://maps.app.goo.gl/" target="_blank" aria-label="Mappa">
+                <i class="fas fa-map-marker-alt"></i>
+            </a>
         </div>
     </div>
-
-    <!-- Chi Siamo -->
-    <section id="chi-siamo" class="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>Chi Siamo</h2>
-                <p class="section-subtitle">La storia, la passione e i valori che ci guidano da generazioni</p>
-            </div>
-            <div class="about-content">
-                <div class="about-image" style="background-image: url('https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/94097425_128498255452626_1830240368331849728_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=nUEO9ugVW_UQ7kNvwGtJlQq&_nc_oc=Adlt3g3Tgw05Uhlyll1oADY7cJmlunrPUjb5H0bY_v0mprUROmLBE2QMBMhXoF0tTmA&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=OK9WoimOjjmY8HUaBR2ewQ&oh=00_Afg2HEDm3jH6s0HmUxuPIUCssanaA6wqiZkz0FIZATZR7g&oe=693D4C8C')"></div>
-                <div class="about-text">
-                    <div class="info-section">
-                        <h3>La Nostra Storia</h3>
-                        <p>Fondata nel 1943, Norcineria Taccalite Paolo è diventata un punto di riferimento per gli amanti della carne di qualità ad Ancona. La nostra filosofia si basa sulla selezione accurata delle materie prime, sul rispetto delle tradizioni e sull'innovazione nelle tecniche di lavorazione.</p>
-                        <p>Da tre generazioni, la famiglia Taccalite porta avanti con passione e dedizione l'arte della norcineria, garantendo ai nostri clienti prodotti di altissima qualità, provenienti da allevamenti locali selezionati e da filiere controllate.</p>
-                    </div>
-                    <div class="info-section">
-                        <h3>La Nostra Filosofia</h3>
-                        <p>Crediamo che la qualità della carne dipenda da molti fattori: l'allevamento, l'alimentazione degli animali, il rispetto dei tempi di maturazione e la professionalità nella lavorazione. Per questo selezioniamo personalmente ogni fornitore e controlliamo ogni fase della filiera.</p>
-                        <p>La tracciabilità e la trasparenza sono per noi valori fondamentali. Siamo orgogliosi di poter raccontare la provenienza di ogni prodotto che vendiamo e le caratteristiche che lo rendono speciale.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Améliorés -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Cosa Dicono di Noi</h2>
-                <p class="section-subtitle">Le opinioni di chi ha scelto la qualità della Norcineria Taccalite Paolo</p>
-            </div>
-            <div class="testimonials-container">
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="rating">
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                        </div>
-                        <div class="testimonial-text">
-                            "i migliori in ancona, se voi magna be la carne bona la trovi qui"
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <img src="https://wiztree.co.uk/wp-content/uploads/2024/05/user-icon-1024x1024-dtzturco.png" alt="Mattia ferraresi">
-                            </div>
-                            <div class="author-info">
-                                <h4>Mattia ferraresi</h4>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="rating">
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star-half-alt"></i></span>
-                        </div>
-                        <div class="testimonial-text">
-                            "Oggi pranzo speciale!!! Pizza con Grasselli, lonza di cinta senese, coppa "storica" e..."coratella di agnello COTTA"....SUPER.  Bravissimi!"
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <img src="https://wiztree.co.uk/wp-content/uploads/2024/05/user-icon-1024x1024-dtzturco.png" alt="Al">
-                            </div>
-                            <div class="author-info">
-                                <h4>AL</h4>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="rating">
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                        </div>
-                        <div class="testimonial-text">
-                            "Personale esperto e competente, prodotti al top, gastronomia, salumi, formaggi e carni di vari tipi eccellenti, ritornerò sicuramente 👍👍 …"
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <img src="https://wiztree.co.uk/wp-content/uploads/2024/05/user-icon-1024x1024-dtzturco.png" alt="Giuseppe Verdi">
-                            </div>
-                            <div class="author-info">
-                                <h4> Ivan Coppari </h4>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="rating">
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                        </div>
-                        <div class="testimonial-text">
-                            "I migliori salumi di Ancona li trovate qui. Non aggiungo altro. Super!!!!!"
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <img src="https://wiztree.co.uk/wp-content/uploads/2024/05/user-icon-1024x1024-dtzturco.png" alt="Alessandro Neri">
-                            </div>
-                            <div class="author-info">
-                                <h4>Bruno Ascoli</h4>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="rating">
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                        </div>
-                        <div class="testimonial-text">
-                            "Tutto buonisso e fresco!!Ottima cortesia"
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <img src="https://wiztree.co.uk/wp-content/uploads/2024/05/user-icon-1024x1024-dtzturco.png" alt="Elena Conti">
-                            </div>
-                            <div class="author-info">
-                                <h4>Cristina Martis</h4>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="rating">
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                            <span class="star"><i class="fas fa-star"></i></span>
-                        </div>
-                        <div class="testimonial-text">
-                            "Ottima norcineria, ottima porchetta e ottimi insaccati."
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <img src="https://wiztree.co.uk/wp-content/uploads/2024/05/user-icon-1024x1024-dtzturco.png" alt="Roberto Marchetti">
-                            </div>
-                            <div class="author-info">
-                                <h4>Pino Galasso</h4>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contatti e Mappa -->
-    <section id="contatti" class="contacts">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contatti</h2>
-                <p class="section-subtitle">Vieni a trovarci nel cuore del Mercato Piazza d'Armi</p>
-            </div>
-            <div class="info-section">
-                <h3>Vieni a Trovarci</h3>
-                <p>Siamo situati nel cuore del Mercato Piazza d'Armi, dove da decenni offriamo i nostri prodotti ai clienti più esigenti. Il nostro banco è facilmente riconoscibile per la cura dei dettagli e l'attenzione alla presentazione.</p>
-                <p><strong>Indirizzo:</strong> Mercato Piazza d'Armi 59 , 60127 Ancona</p>
-                <p><strong>Telefono:</strong> +39 071 897903</p>
-                <p><strong>Orari:</strong> Lun-Sab: 7:00-13:00, 16:00-20:00 | Dom: Chiuso</p>
-            </div>
-            <div id="map">
-                <!-- Mappa Google Maps intégrée -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2878.654240723935!2d13.518215315499245!3d43.82444497911556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d3f7b7c7b7b7b%3A0x7b7b7b7b7b7b7b7b!2sMercato%20Piazza%20d&#39;Armi%2C%2060127%20Ancona!5e0!3m2!1sit!2sit!4v1645541234567!5m2!1sit!2sit" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Norcineria Taccalite Paolo</h3>
-                    <p>Dal 1946, punto di riferimento per la carne di qualità ad Ancona. Passione, tradizione e innovazione nella lavorazione delle carni.</p>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/profile.php?id=100054657690138&sk=photos" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Link Veloci</h3>
-                    <a href="#home">Home</a>
-                    <a href="chi siamo.html">Chi Siamo</a>
-                    <a href="faq.html">FAQ</a>
-                    <a href="contatti.html">Contatti</a>
-                </div>
-                <div class="footer-column">
-                    <h3>Contatti</h3>
-                    <p>Mercato Piazza d'Armi 59, 60127 Ancona</p>
-                    <p>+39 071897903 </p>
-                </div>
-                <div class="footer-column">
-                    <h3>Orari di Apertura</h3>
-                    <p> Lunedì - Sabato: 7:30 - 19:30 </p>
-                    <p>Domenica: Chiuso</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 1946 Norcineria Taccalite Paolo | Iva: 03007180429 | Tutti i diritti riservati.</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
-        // Page de chargement RARE avec particules
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('loader');
+        // Creazione particelle
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
             
-            // Créer des particules
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.setProperty('--tx', `${Math.random() * 200 - 100}px`);
-                particle.style.setProperty('--ty', `${Math.random() * 200 - 100}px`);
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 6}s`;
-                particlesContainer.appendChild(particle);
+            // Dimensioni casuali
+            const size = Math.random() * 10 + 5;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Posizione iniziale casuale
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            
+            // Colore casuale
+            const colors = ['#e74c3c', '#d4af37', '#ecf0f1', '#3498db'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.backgroundColor = color;
+            
+            // Durata animazione casuale
+            const duration = Math.random() * 30 + 20;
+            particle.style.animationDuration = `${duration}s`;
+            
+            // Ritardo casuale
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Countdown
+        function updateCountdown() {
+            // Data di fine manutenzione (imposta 3 giorni da oggi)
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 3);
+            endDate.setHours(18, 0, 0, 0); // Alle 18:00
+            
+            const now = new Date().getTime();
+            const distance = endDate - now;
+            
+            if (distance < 0) {
+                // Countdown terminato
+                document.getElementById('days').innerHTML = "00";
+                document.getElementById('hours').innerHTML = "00";
+                document.getElementById('minutes').innerHTML = "00";
+                document.getElementById('seconds').innerHTML = "00";
+                
+                // Aggiorna il messaggio
+                document.querySelector('.subtitle').textContent = "Manutenzione completata!";
+                document.querySelector('.message').innerHTML = "La manutenzione è stata completata. Il sito sarà online a breve. Grazie per la pazienza!";
+                return;
             }
             
-            setTimeout(function() {
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
-            }, 4000);
-        });
-
-        // Animation des statistiques
-        function animateStats() {
-            const statItems = document.querySelectorAll('.stat-item');
-            statItems.forEach(item => {
-                const numberElement = item.querySelector('.stat-number');
-                const finalNumber = parseInt(numberElement.getAttribute('data-count'));
-                let currentNumber = 0;
-                const increment = finalNumber / 50;
-                const timer = setInterval(() => {
-                    currentNumber += increment;
-                    if (currentNumber >= finalNumber) {
-                        currentNumber = finalNumber;
-                        clearInterval(timer);
-                    }
-                    numberElement.textContent = Math.floor(currentNumber);
-                }, 40);
-            });
+            // Calcolo giorni, ore, minuti, secondi
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Aggiorna i valori
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
         }
-
-        // Menu mobile
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
         
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
+        // Aggiorna il countdown ogni secondo
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Effetto di digitazione per il sottotitolo
+        const subtitle = document.querySelector('.subtitle');
+        const originalText = subtitle.textContent;
+        subtitle.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < originalText.length) {
+                subtitle.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
             }
-        });
-
-        // Slideshow
-        const images = [
-            'img1.jpg',
-            'https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/93569438_129031912065927_1603893087866716160_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=Q4_dKHhB24sQ7kNvwHEajcN&_nc_oc=AdnbnnI31q3FRKLXdmOrRPSNO1t0q8Dolie2Ak3nJynLfghQhsOTlAptvraNvzThnA8&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=OIeZWpjpX7DvgaeC9RCyFA&oh=00_AfjgP3GC_Qu_ljQyb2Z_Kyau4aPBnd0EpfxiIrjZfmOFpg&oe=693D4B99',
-            'img2.jpg',
-            'https://scontent-ams2-1.xx.fbcdn.net/v/t39.30808-6/474439278_1127380045760575_2961560964906893236_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Y9JaNhsSjcUQ7kNvwF6jwEt&_nc_oc=AdluLRRNMD_NtHz1RJJcNnuY36dFCsT_Tsi_vOY6qyJMmmRyJmRPjCyNdGQfCTeBjHI&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=AMnxCbhu0Br-GilV1THwGA&oh=00_AfiQ-UFKEB2Plp4YpX6octeabWmc6Cndm70IkOAvj2BvMQ&oe=691BCF18',
-            'https://scontent-ams2-1.xx.fbcdn.net/v/t1.6435-9/95217966_132585235043928_3230393105463115776_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-bGYso-qLOQQ7kNvwFpy4Hl&_nc_oc=AdlnyVpHQknZ7KccnUJ-UfQnB3L5inaf7y-kTB8yG1TDIPJipVNXt3TrVq3kqMkBIb4&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=BWkgWRy_JKtp1sfw5DcqIw&oh=00_Afg6RNu3PPvC3mbp8AmSYCje4S2icE-ZkDk5Kp9B7WSQiA&oe=693D5AF2',
-            'https://scontent-ams2-1.xx.fbcdn.net/v/t39.30808-6/473171257_1121386259693287_2965290595950131410_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=1PtPu8GR4YcQ7kNvwGAyVZ9&_nc_oc=AdkmbpaaSUuKXgDp_EJxxwcZaVosIvuj41C-KDwjPcdOFtJrpSTzErqWG_Mifq7072M&_nc_zt=23&_nc_ht=scontent-ams2-1.xx&_nc_gid=Hn_Ik0o0Bu5_aK02BFM0qQ&oh=00_AfjEjXB1PVDl6xJU7-_SJ72yYjhV1gzDh89ALyCNWLZYjg&oe=691BAAB1', 
-        ];
-
-        const slideshow = document.querySelector('.slideshow');
-        
-        // Créer les slides
-        images.forEach((image, index) => {
-            const slide = document.createElement('div');
-            slide.className = 'slide';
-            slide.style.backgroundImage = `url('${image}')`;
-            if (index === 0) slide.classList.add('active');
-            slideshow.appendChild(slide);
-        });
-
-        // Fonction pour changer les slides
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
         }
-
-        // Changer de slide toutes les 5 secondes
-        setInterval(nextSlide, 5000);
-
-        // Animation au scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                    
-                    // Animation en cascade pour les cartes produits
-                    if (entry.target.classList.contains('products')) {
-                        const productCards = document.querySelectorAll('.product-card');
-                        productCards.forEach((card, index) => {
-                            setTimeout(() => {
-                                card.classList.add('animate');
-                            }, index * 200);
-                        });
-                    }
-                    
-                    // Animation pour les sections d'information
-                    if (entry.target.classList.contains('about')) {
-                        const aboutImage = document.querySelector('.about-image');
-                        const aboutText = document.querySelector('.about-text');
-                        const infoSections = document.querySelectorAll('.info-section');
-                        
-                        setTimeout(() => {
-                            aboutImage.classList.add('animate');
-                        }, 300);
-                        
-                        setTimeout(() => {
-                            aboutText.classList.add('animate');
-                        }, 600);
-                        
-                        infoSections.forEach((section, index) => {
-                            setTimeout(() => {
-                                section.classList.add('animate');
-                            }, 900 + (index * 300));
-                        });
-                    }
-                    
-                    // Animation pour la carte
-                    if (entry.target.classList.contains('contacts')) {
-                        const map = document.getElementById('map');
-                        setTimeout(() => {
-                            map.classList.add('animate');
-                        }, 500);
-                    }
-                    
-                    // Animation pour les témoignages
-                    if (entry.target.classList.contains('testimonials')) {
-                        const testimonialCards = document.querySelectorAll('.testimonial-card');
-                        testimonialCards.forEach((card, index) => {
-                            setTimeout(() => {
-                                card.classList.add('animate');
-                            }, index * 200);
-                        });
-                    }
-                    
-                    // Animation pour les statistiques
-                    if (entry.target.classList.contains('stats-section')) {
-                        const statItems = document.querySelectorAll('.stat-item');
-                        statItems.forEach((item, index) => {
-                            setTimeout(() => {
-                                item.classList.add('animate');
-                            }, index * 200);
-                        });
-                        animateStats();
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observer les sections
-        document.querySelectorAll('section, .stats-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Animation du contenu hero
-        setTimeout(() => {
-            const heroContent = document.getElementById('heroContent');
-            heroContent.classList.add('animate');
-        }, 1000);
+        
+        // Avvia l'effetto di digitazione dopo un breve ritardo
+        setTimeout(typeWriter, 1000);
     </script>
 </body>
-
 </html>
-
-
-
