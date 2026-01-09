@@ -13,7 +13,126 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Reset e variabili */
+        /* ===== PAGE DE CHARGEMENT ===== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loader-logo-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader-logo {
+            width: 200px;
+            height: 200px;
+            animation: logoPulse 2s ease-in-out infinite;
+            filter: brightness(0) invert(1);
+        }
+
+        .loader-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top: 3px solid #8B0000;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+        }
+
+        .loader-ring:nth-child(2) {
+            border-top: 3px solid #D4AF37;
+            width: 80%;
+            height: 80%;
+            animation: spinReverse 1.8s linear infinite;
+        }
+
+        .loader-ring:nth-child(3) {
+            border-top: 3px solid #ffffff;
+            width: 60%;
+            height: 60%;
+            animation: spin 2.2s linear infinite;
+        }
+
+        .loader-text {
+            color: white;
+            font-size: 18px;
+            letter-spacing: 4px;
+            margin-top: 40px;
+            font-weight: 300;
+            text-transform: uppercase;
+            position: relative;
+            opacity: 0;
+            animation: fadeInText 0.5s ease forwards 0.5s;
+        }
+
+        .loader-progress {
+            width: 200px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loader-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #8B0000, #D4AF37);
+            animation: loadingProgress 3s ease-in-out forwards;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.1); 
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes fadeInText {
+            to { opacity: 1; }
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        /* ===== STYLES PRINCIPAUX ===== */
         * {
             margin: 0;
             padding: 0;
@@ -21,11 +140,11 @@
         }
 
         :root {
-            --primary-color: #8B0000; /* Rouge foncé élégant */
-            --secondary-color: #1a1a1a; /* Noir profond */
-            --accent-color: #D4AF37; /* Or élégant */
-            --light-color: #f5f5f5; /* Gris très clair */
-            --dark-color: #2c2c2c; /* Gris foncé */
+            --primary-color: #8B0000;
+            --secondary-color: #1a1a1a;
+            --accent-color: #D4AF37;
+            --light-color: #f5f5f5;
+            --dark-color: #2c2c2c;
             --transition: all 0.4s ease;
             --shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
@@ -35,6 +154,12 @@
             background-color: var(--light-color);
             color: var(--dark-color);
             line-height: 1.6;
+            opacity: 0;
+            animation: fadeInBody 0.5s ease forwards;
+        }
+
+        @keyframes fadeInBody {
+            to { opacity: 1; }
         }
 
         h1, h2, h3, h4 {
@@ -43,7 +168,7 @@
             color: var(--secondary-color);
         }
 
-        /* Header Minimaliste */
+        /* Header */
         header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -97,7 +222,7 @@
             text-transform: uppercase;
         }
 
-        /* Navigation Simplifiée */
+        /* Navigation */
         nav ul {
             display: flex;
             list-style: none;
@@ -134,7 +259,7 @@
             width: 100%;
         }
 
-        /* Hero Section Épurée */
+        /* Hero Section */
         .hero {
             height: 100vh;
             min-height: 700px;
@@ -186,7 +311,7 @@
             font-weight: 300;
         }
 
-        /* Boutons Élégants */
+        /* Boutons */
         .btn {
             display: inline-block;
             background: var(--primary-color);
@@ -244,7 +369,7 @@
             background: var(--accent-color);
         }
 
-        /* Gallery Épurée - Sans textes */
+        /* Gallery Épurée */
         .meat-gallery {
             padding: 120px 0;
             background: white;
@@ -281,7 +406,7 @@
             transform: scale(1.05);
         }
 
-        /* Parallax Section Minimaliste */
+        /* Parallax Section */
         .parallax-section {
             height: 500px;
             background: url('img3.jpg') fixed center/cover;
@@ -300,7 +425,7 @@
             background: rgba(0,0,0,0.5);
         }
 
-        /* Section Chi Siamo - Unique avec texte */
+        /* Section Chi Siamo */
         .about-section {
             padding: 120px 0;
             background: var(--light-color);
@@ -338,11 +463,7 @@
             color: #555;
         }
 
-        .about-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Products Showcase Minimaliste */
+        /* Products Showcase */
         .products-showcase {
             padding: 100px 0;
             background: white;
@@ -370,7 +491,7 @@
             border-radius: 4px;
         }
 
-        /* Testimonials Minimalistes */
+        /* Testimonials */
         .testimonials {
             padding: 100px 0;
             background: #f9f9f9;
@@ -432,7 +553,7 @@
             font-size: 18px;
         }
 
-        /* Footer Épuré */
+        /* Footer */
         footer {
             background: var(--secondary-color);
             color: rgba(255,255,255,0.8);
@@ -554,7 +675,7 @@
             }
         }
 
-        /* Animations Subtiles */
+        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -571,7 +692,7 @@
             animation: fadeIn 0.8s ease forwards;
         }
 
-        /* Scrollbar Personnalisée */
+        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -591,7 +712,21 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Page de Chargement -->
+    <div id="loader">
+        <div class="loader-logo-container">
+            <img src="logo.png" alt="Norcineria Taccalite Paolo" class="loader-logo">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+        </div>
+        <div class="loader-text">NORCINERIA TACCALITE PAOLO</div>
+        <div class="loader-progress">
+            <div class="loader-progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- Contenu Principal -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -631,11 +766,10 @@
         </div>
     </section>
 
-    <!-- Gallery sans textes -->
+    <!-- Gallery -->
     <section id="gallery" class="meat-gallery">
         <div class="container">
             <div class="gallery-grid">
-                <!-- Images sans overlay textuel -->
                 <div class="gallery-item fade-in">
                     <img src="img1.jpg" alt="Carne di qualità - Norcineria Taccalite" class="gallery-image">
                 </div>
@@ -667,12 +801,12 @@
         </div>
     </section>
 
-    <!-- Parallax Section sans texte -->
+    <!-- Parallax Section -->
     <section class="parallax-section">
         <div class="parallax-overlay"></div>
     </section>
 
-    <!-- Chi Siamo - Seule section avec texte -->
+    <!-- Chi Siamo -->
     <section id="about" class="about-section">
         <div class="container">
             <div class="section-title">
@@ -710,7 +844,7 @@
         </div>
     </section>
 
-    <!-- Products Showcase sans textes -->
+    <!-- Products Showcase -->
     <section class="products-showcase">
         <div class="container">
             <div class="products-grid">
@@ -874,6 +1008,20 @@
     </footer>
 
     <script>
+        // Page de chargement
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            
+            // Attendre que la barre de progression soit terminée
+            setTimeout(function() {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                
+                // Rendre le body visible
+                document.body.style.opacity = '1';
+            }, 3000); // Correspond à la durée de l'animation de la barre de progression
+        });
+
         // Hero Slider
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
@@ -884,7 +1032,10 @@
             slides[currentSlide].classList.add('active');
         }
         
-        setInterval(nextSlide, 5000);
+        // Démarrer le slider après le chargement
+        setTimeout(() => {
+            setInterval(nextSlide, 5000);
+        }, 3000);
         
         // Header effect
         window.addEventListener('scroll', function() {
@@ -907,9 +1058,12 @@
             threshold: 0.1
         });
         
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        // Observer les éléments après le chargement
+        setTimeout(() => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }, 3000);
         
         // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
