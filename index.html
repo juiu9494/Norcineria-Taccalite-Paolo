@@ -13,6 +13,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* ===== RESET ET VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8B0000;      /* Rouge foncé élégant */
+            --secondary-color: #1a1a1a;    /* Noir profond */
+            --accent-color: #D4AF37;       /* Or élégant */
+            --light-color: #f8f8f8;        /* Gris très clair */
+            --transition: all 0.3s ease;
+            --shadow: 0 2px 10px rgba(0,0,0,0.05);
+            --shadow-hover: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-color);
+            color: var(--secondary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         /* ===== PAGE DE CHARGEMENT ===== */
         #loader {
             position: fixed;
@@ -20,74 +62,40 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            background: var(--secondary-color);
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
-        .loader-logo-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .loader-content {
+            text-align: center;
         }
 
         .loader-logo {
-            width: 200px;
-            height: 200px;
-            animation: logoPulse 2s ease-in-out infinite;
-            filter: brightness(0) invert(1);
-        }
-
-        .loader-ring {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 3px solid transparent;
-            border-top: 3px solid #8B0000;
-            border-radius: 50%;
-            animation: spin 1.5s linear infinite;
-        }
-
-        .loader-ring:nth-child(2) {
-            border-top: 3px solid #D4AF37;
-            width: 80%;
-            height: 80%;
-            animation: spinReverse 1.8s linear infinite;
-        }
-
-        .loader-ring:nth-child(3) {
-            border-top: 3px solid #ffffff;
-            width: 60%;
-            height: 60%;
-            animation: spin 2.2s linear infinite;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .loader-text {
             color: white;
-            font-size: 18px;
-            letter-spacing: 4px;
-            margin-top: 40px;
-            font-weight: 300;
+            font-size: 14px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            position: relative;
-            opacity: 0;
-            animation: fadeInText 0.5s ease forwards 0.5s;
+            margin-top: 20px;
+            font-weight: 300;
         }
 
         .loader-progress {
-            width: 200px;
-            height: 2px;
+            width: 150px;
+            height: 1px;
             background: rgba(255, 255, 255, 0.1);
             margin-top: 30px;
-            border-radius: 2px;
-            overflow: hidden;
             position: relative;
         }
 
@@ -97,151 +105,93 @@
             left: 0;
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #8B0000, #D4AF37);
-            animation: loadingProgress 3s ease-in-out forwards;
+            background: var(--accent-color);
+            animation: loading 2s ease-in-out forwards;
         }
 
-        @keyframes logoPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                opacity: 1;
-            }
-            50% { 
-                transform: scale(1.1); 
-                opacity: 0.9;
-            }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes spinReverse {
-            0% { transform: rotate(360deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        @keyframes fadeInText {
-            to { opacity: 1; }
-        }
-
-        @keyframes loadingProgress {
+        @keyframes loading {
             0% { width: 0%; }
-            50% { width: 70%; }
             100% { width: 100%; }
         }
 
-        /* ===== STYLES PRINCIPAUX ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #8B0000;
-            --secondary-color: #1a1a1a;
-            --accent-color: #D4AF37;
-            --light-color: #f5f5f5;
-            --dark-color: #2c2c2c;
-            --transition: all 0.4s ease;
-            --shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-            opacity: 0;
-            animation: fadeInBody 0.5s ease forwards;
-        }
-
-        @keyframes fadeInBody {
-            to { opacity: 1; }
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            color: var(--secondary-color);
-        }
-
-        /* Header */
+        /* ===== HEADER ===== */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
+            transition: var(--transition);
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 15px 0;
+            height: 80px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
             text-decoration: none;
+            color: var(--secondary-color);
         }
 
-        .logo img {
-            height: 70px;
-            width: auto;
-            transition: var(--transition);
-        }
-
-        .logo:hover img {
-            transform: rotate(-5deg);
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
         }
 
         .logo-text h1 {
-            font-size: 22px;
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
+            font-size: 18px;
+            margin-bottom: 3px;
+            line-height: 1.2;
         }
 
         .logo-text p {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--primary-color);
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
-        /* Navigation */
+        /* ===== NAVIGATION MOBILE FIRST ===== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 5px;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
-            gap: 40px;
+            gap: 30px;
         }
 
         nav a {
             text-decoration: none;
             color: var(--secondary-color);
+            font-size: 14px;
             font-weight: 500;
-            font-size: 15px;
             letter-spacing: 1px;
             text-transform: uppercase;
             transition: var(--transition);
             position: relative;
-        }
-
-        nav a:hover {
-            color: var(--primary-color);
         }
 
         nav a::after {
@@ -259,10 +209,14 @@
             width: 100%;
         }
 
-        /* Hero Section */
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ===== HERO SECTION ===== */
         .hero {
             height: 100vh;
-            min-height: 700px;
+            min-height: 600px;
             position: relative;
             margin-top: 80px;
             overflow: hidden;
@@ -276,56 +230,65 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             opacity: 0;
-            transition: opacity 2s ease;
-            filter: brightness(0.8);
+            transition: opacity 1.5s ease;
         }
 
         .hero-slide.active {
             opacity: 1;
         }
 
-        .hero-content {
+        .hero-overlay {
             position: absolute;
-            top: 50%;
-            left: 10%;
-            transform: translateY(-50%);
-            color: white;
-            max-width: 600px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .hero-content {
+            position: relative;
             z-index: 2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            padding: 0 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .hero h2 {
-            font-size: 44px;
-            margin-bottom: 25px;
-            line-height: 1.1;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
             color: white;
         }
 
         .hero p {
-            font-size: 18px;
-            margin-bottom: 35px;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
             opacity: 0.9;
             font-weight: 300;
         }
 
-        /* Boutons */
+        /* ===== BOUTONS ===== */
         .btn {
             display: inline-block;
+            padding: 12px 30px;
             background: var(--primary-color);
             color: white;
-            padding: 14px 35px;
-            border-radius: 2px;
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            transition: var(--transition);
             border: none;
             cursor: pointer;
+            transition: var(--transition);
         }
 
         .btn:hover {
@@ -345,17 +308,22 @@
             color: var(--primary-color);
         }
 
-        /* Section Titre */
+        /* ===== SECTIONS COMMUNES ===== */
+        section {
+            padding: 80px 0;
+        }
+
         .section-title {
             text-align: center;
-            margin-bottom: 70px;
+            margin-bottom: 50px;
         }
 
         .section-title h2 {
-            font-size: 36px;
+            font-size: 2rem;
             position: relative;
             display: inline-block;
-            padding-bottom: 20px;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
         }
 
         .section-title h2::after {
@@ -364,56 +332,50 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 60px;
             height: 2px;
             background: var(--accent-color);
         }
 
-        /* Gallery Épurée */
+        /* ===== GALLERY ===== */
         .meat-gallery {
-            padding: 120px 0;
             background: white;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
-            height: 350px;
+            height: 300px;
             cursor: pointer;
             transition: var(--transition);
-            background: #f0f0f0;
         }
 
         .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow);
+            transform: translateY(-5px);
         }
 
         .gallery-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 1s ease;
+            transition: transform 0.6s ease;
         }
 
         .gallery-item:hover .gallery-image {
             transform: scale(1.05);
         }
 
-        /* Parallax Section */
+        /* ===== PARALLAX ===== */
         .parallax-section {
-            height: 500px;
+            height: 400px;
             background: url('img3.jpg') fixed center/cover;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .parallax-overlay {
@@ -422,125 +384,121 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.4);
         }
 
-        /* Section Chi Siamo */
+        /* ===== ABOUT SECTION ===== */
         .about-section {
-            padding: 120px 0;
             background: var(--light-color);
         }
 
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .about-image {
             border-radius: 4px;
             overflow: hidden;
-            box-shadow: var(--shadow);
         }
 
         .about-image img {
             width: 100%;
-            height: 500px;
+            height: 400px;
             object-fit: cover;
         }
 
         .about-text h3 {
-            font-size: 32px;
-            margin-bottom: 30px;
-            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
         }
 
         .about-text p {
-            font-size: 16px;
-            line-height: 1.8;
             margin-bottom: 20px;
             color: #555;
+            line-height: 1.7;
         }
 
-        /* Products Showcase */
-        .products-showcase {
-            padding: 100px 0;
-            background: white;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .product-card {
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .product-card:hover {
-            opacity: 0.9;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        /* Testimonials */
+        /* ===== TESTIMONIALS ===== */
         .testimonials {
-            padding: 100px 0;
-            background: #f9f9f9;
+            background: white;
         }
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 30px;
         }
 
+        @media (min-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         .testimonial-card {
-            background: white;
-            padding: 40px;
-            border-radius: 4px;
-            box-shadow: var(--shadow);
+            padding: 30px;
+            background: var(--light-color);
+            border-left: 3px solid var(--accent-color);
         }
 
         .testimonial-text {
             font-style: italic;
-            margin-bottom: 25px;
-            font-size: 16px;
-            line-height: 1.7;
+            margin-bottom: 20px;
             color: #555;
+            line-height: 1.6;
         }
 
-        /* Contact Section */
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* ===== CONTACT SECTION ===== */
         .contact-section {
-            padding: 100px 0;
-            background: white;
+            background: var(--light-color);
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: 1fr;
+            gap: 40px;
         }
 
-        #map {
-            height: 400px;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .contact-info h3 {
-            font-size: 28px;
-            margin-bottom: 40px;
-            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
         }
 
         .contact-detail {
@@ -550,28 +508,48 @@
         .contact-detail h4 {
             color: var(--primary-color);
             margin-bottom: 10px;
-            font-size: 18px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Footer */
+        #map {
+            height: 300px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== FOOTER ===== */
         footer {
             background: var(--secondary-color);
             color: rgba(255,255,255,0.8);
-            padding: 80px 0 30px;
+            padding: 60px 0 30px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: 1fr;
             gap: 40px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .footer-column h3 {
             color: var(--accent-color);
-            margin-bottom: 25px;
             font-size: 18px;
-            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column p {
+            margin-bottom: 10px;
+            line-height: 1.6;
         }
 
         .social-links {
@@ -603,56 +581,66 @@
             padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: rgba(255,255,255,0.5);
-            font-size: 13px;
+            font-size: 12px;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero h2 {
-                font-size: 36px;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
+            .menu-toggle {
+                display: block;
             }
-            
+
             nav ul {
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                transition: var(--transition);
+                gap: 30px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             }
-            
-            .hero {
-                height: 70vh;
-                min-height: 500px;
+
+            nav ul.active {
+                left: 0;
             }
-            
-            .hero-content {
-                left: 5%;
-                right: 5%;
-                text-align: center;
+
+            nav a {
+                font-size: 16px;
+                padding: 10px 0;
             }
-            
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+            }
+
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
-            
+
             .gallery-item {
-                height: 250px;
+                height: 200px;
             }
         }
 
@@ -660,85 +648,111 @@
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .hero h2 {
-                font-size: 28px;
+                font-size: 1.8rem;
             }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 12px;
-            }
-            
+
             .section-title h2 {
-                font-size: 28px;
+                font-size: 1.6rem;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* Animations */
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .modal.active {
+            display: flex;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 4px;
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a30000;
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <!-- Page de Chargement -->
     <div id="loader">
-        <div class="loader-logo-container">
+        <div class="loader-content">
             <img src="logo.png" alt="Norcineria Taccalite Paolo" class="loader-logo">
-            <div class="loader-ring"></div>
-            <div class="loader-ring"></div>
-            <div class="loader-ring"></div>
-        </div>
-        <div class="loader-text">NORCINERIA TACCALITE </div>
-        <div class="loader-progress">
-            <div class="loader-progress-bar"></div>
+            <div class="loader-text">Caricamento</div>
+            <div class="loader-progress">
+                <div class="loader-progress-bar"></div>
+            </div>
         </div>
     </div>
 
-    <!-- Contenu Principal -->
+    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
                 <a href="#home" class="logo">
-                    <img src="logo.png" alt="Logo Norcineria Taccalite Paolo">
+                    <img src="logo.png" alt="Logo" class="logo-img">
                     <div class="logo-text">
-                        <h1></h1>
+                        <h1>Norcineria Taccalite Paolo</h1>
                         <p>Dal 1946</p>
                     </div>
                 </a>
+                
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
                 <nav>
-                    <ul>
+                    <ul id="navMenu">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#gallery">Prodotti</a></li>
                         <li><a href="#about">Chi Siamo</a></li>
@@ -754,13 +768,16 @@
         <div class="hero-slide active" style="background-image: url('img1.jpg');"></div>
         <div class="hero-slide" style="background-image: url('img3.jpg');"></div>
         <div class="hero-slide" style="background-image: url('img4.jpg');"></div>
-        <div class="hero-content fade-in">
-            <h2>La Tradizione della Carne</h2>
-            <p>Esperienza e passione in ogni taglio, dal 1946.</p>
-            <div>
+        
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h2 class="fade-in">La Tradizione della Carne</h2>
+            <p class="fade-in delay-1">Esperienza e passione in ogni taglio, dal 1946.</p>
+            <div class="btn-group fade-in delay-2">
                 <a href="#gallery" class="btn">Scopri di Più</a>
                 <a href="tel:+39071897903" class="btn btn-outline">
-                    <i class="fas fa-phone"></i> Prenota
+                    <i class="fas fa-phone"></i> Prenota Ora
                 </a>
             </div>
         </div>
@@ -769,39 +786,43 @@
     <!-- Gallery -->
     <section id="gallery" class="meat-gallery">
         <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Prodotti</h2>
+            </div>
+            
             <div class="gallery-grid">
                 <div class="gallery-item fade-in">
-                    <img src="img1.jpg" alt="Carne di qualità - Norcineria Taccalite" class="gallery-image">
+                    <img src="img1.jpg" alt="Carne di qualità" class="gallery-image">
+                </div>
+                
+                <div class="gallery-item fade-in delay-1">
+                    <img src="img3.jpg" alt="Prodotti norcineria" class="gallery-image">
+                </div>
+                
+                <div class="gallery-item fade-in delay-2">
+                    <img src="img4.jpg" alt="Specialità carne" class="gallery-image">
                 </div>
                 
                 <div class="gallery-item fade-in">
-                    <img src="img3.jpg" alt="Prodotti norcineria - Norcineria Taccalite" class="gallery-image">
+                    <img src="img5.jpg" alt="Bistecche frollate" class="gallery-image">
+                </div>
+                
+                <div class="gallery-item fade-in delay-1">
+                    <img src="img6.jpg" alt="Salumi artigianali" class="gallery-image">
+                </div>
+                
+                <div class="gallery-item fade-in delay-2">
+                    <img src="img7.jpg" alt="Porchetta tradizionale" class="gallery-image">
                 </div>
                 
                 <div class="gallery-item fade-in">
-                    <img src="img4.jpg" alt="Specialità carne - Norcineria Taccalite" class="gallery-image">
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img5.jpg" alt="Bistecche frollate - Norcineria Taccalite" class="gallery-image">
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img6.jpg" alt="Salumi artigianali - Norcineria Taccalite" class="gallery-image">
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img7.jpg" alt="Porchetta tradizionale - Norcineria Taccalite" class="gallery-image">
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img8.jpg" alt="Banco norcineria - Norcineria Taccalite" class="gallery-image">
+                    <img src="img8.jpg" alt="Banco norcineria" class="gallery-image">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Parallax Section -->
+    <!-- Parallax -->
     <section class="parallax-section">
         <div class="parallax-overlay"></div>
     </section>
@@ -815,49 +836,18 @@
             
             <div class="about-content">
                 <div class="about-image fade-in">
-                    <img src="img8.jpg" alt="La nostra norcineria storica">
+                    <img src="img8.jpg" alt="La nostra norcineria">
                 </div>
-                <div class="about-text fade-in">
+                
+                <div class="about-text fade-in delay-1">
                     <h3>La Nostra Storia</h3>
-                    <p>
-                        La Norcineria Taccalite Paolo nasce nel 1946 dalla passione per la tradizione carniera marchigiana. 
-                        Fondata da Paolo Taccalite, l'attività è cresciuta nel cuore di Ancona, diventando un punto di riferimento 
-                        per gli amanti della carne di qualità.
-                    </p>
-                    <p>
-                        Da tre generazioni, la famiglia Taccalite porta avanti con dedizione l'arte della norcineria, 
-                        mantenendo vive le antiche tradizioni mentre abbraccia le migliori pratiche contemporanee. 
-                        Ogni giorno, selezioniamo personalmente le migliori materie prime, lavoriamo con maestria 
-                        e seguiamo i ritmi naturali della stagionatura.
-                    </p>
-                    <p>
-                        La nostra filosofia si basa su tre pilastri fondamentali: qualità incontestabile, 
-                        rispetto per la tradizione e trasparenza verso i nostri clienti. Siamo orgogliosi 
-                        di poter raccontare la storia di ogni nostro prodotto, dalla selezione della materia prima 
-                        alla lavorazione finale.
-                    </p>
-                    <p style="margin-top: 30px;">
-                        <a href="#contact" class="btn">Visita il Nostro Negozio</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Showcase -->
-    <section class="products-showcase">
-        <div class="container">
-            <div class="products-grid">
-                <div class="product-card fade-in">
-                    <img src="img1.jpg" alt="Carne bovina" class="product-image">
-                </div>
-                
-                <div class="product-card fade-in">
-                    <img src="img3.jpg" alt="Salumi" class="product-image">
-                </div>
-                
-                <div class="product-card fade-in">
-                    <img src="img4.jpg" alt="Porchetta" class="product-image">
+                    <p>La Norcineria Taccalite Paolo nasce nel 1946 dalla passione per la tradizione carniera marchigiana. Fondata da Paolo Taccalite, l'attività è cresciuta nel cuore di Ancona, diventando un punto di riferimento per gli amanti della carne di qualità.</p>
+                    
+                    <p>Da tre generazioni, la famiglia Taccalite porta avanti con dedizione l'arte della norcineria, mantenendo vive le antiche tradizioni mentre abbraccia le migliori pratiche contemporanee. Ogni giorno, selezioniamo personalmente le migliori materie prime, lavoriamo con maestria e seguiamo i ritmi naturali della stagionatura.</p>
+                    
+                    <p>La nostra filosofia si basa su tre pilastri fondamentali: qualità incontestabile, rispetto per la tradizione e trasparenza verso i nostri clienti. Siamo orgogliosi di poter raccontare la storia di ogni nostro prodotto.</p>
+                    
+                    <a href="#contact" class="btn" style="margin-top: 20px;">Visita il Nostro Negozio</a>
                 </div>
             </div>
         </div>
@@ -872,29 +862,23 @@
             
             <div class="testimonial-grid">
                 <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">
-                        "La qualità della carne è eccezionale. Ogni taglio è perfetto, e il personale è sempre disponibile 
-                        a consigliare il prodotto migliore per ogni occasione."
-                    </p>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%;"></div>
-                        <div>
-                            <h4 style="font-size: 16px;">Marco Rossi</h4>
-                            <p style="color: #777; font-size: 13px;">Cliente da 10 anni</p>
+                    <p class="testimonial-text">"La qualità della carne è eccezionale. Ogni taglio è perfetto, e il personale è sempre disponibile a consigliare il prodotto migliore per ogni occasione."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Marco Rossi</h4>
+                            <p>Cliente da 10 anni</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">
-                        "Non c'è confronto con altre norcinerie. La loro porchetta è la migliore di Ancona, 
-                        e i salumi hanno un sapore unico che racconta anni di esperienza."
-                    </p>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%;"></div>
-                        <div>
-                            <h4 style="font-size: 16px;">Laura Bianchi</h4>
-                            <p style="color: #777; font-size: 13px;">Appassionata di gastronomia</p>
+                <div class="testimonial-card fade-in delay-1">
+                    <p class="testimonial-text">"Non c'è confronto con altre norcinerie. La loro porchetta è la migliore di Ancona, e i salumi hanno un sapore unico che racconta anni di esperienza."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Laura Bianchi</h4>
+                            <p>Appassionata di gastronomia</p>
                         </div>
                     </div>
                 </div>
@@ -902,7 +886,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-title">
@@ -920,20 +904,12 @@
                     
                     <div class="contact-detail">
                         <h4><i class="fas fa-phone"></i> Telefono</h4>
-                        <p style="font-size: 18px; font-weight: 600;">
-                            <a href="tel:+39071897903" style="color: var(--secondary-color); text-decoration: none;">
-                                +39 071 897903
-                            </a>
-                        </p>
+                        <p><a href="tel:+39071897903">+39 071 897903</a></p>
                     </div>
                     
                     <div class="contact-detail">
                         <h4><i class="fas fa-clock"></i> Orari</h4>
-                        <p>
-                            Lunedì - Sabato<br>
-                            7:00-13:00 | 16:00-20:00<br>
-                            Domenica: Chiuso
-                        </p>
+                        <p>Lunedì - Sabato<br>7:00-13:00 | 16:00-20:00<br>Domenica: Chiuso</p>
                     </div>
                     
                     <a href="tel:+39071897903" class="btn" style="margin-top: 20px;">
@@ -941,12 +917,12 @@
                     </a>
                 </div>
                 
-                <div class="map-container fade-in">
+                <div class="map-container fade-in delay-1">
                     <div id="map">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2878.654240723935!2d13.518215315499245!3d43.82444497911556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d3f7b7c7b7b7b%3A0x7b7b7b7b7b7b7b7b!2sMercato%20Piazza%20d&#39;Armi%2C%2060127%20Ancona!5e0!3m2!1sit!2sit!4v1645541234567!5m2!1sit!2sit" 
                             width="100%" 
-                            height="400" 
+                            height="300" 
                             style="border:0;" 
                             allowfullscreen="" 
                             loading="lazy"
@@ -964,15 +940,14 @@
             <div class="footer-grid">
                 <div class="footer-column">
                     <h3>Norcineria Taccalite Paolo</h3>
-                    <p style="margin-bottom: 20px;">
-                        Tradizione e qualità nella lavorazione della carne dal 1946.
-                    </p>
+                    <p>Tradizione e qualità nella lavorazione della carne dal 1946.</p>
+                    
                     <div class="social-links">
-                        <a href="https://facebook.com" aria-label="Facebook">
-                            <i class="https://www.facebook.com/profile.php?id=61584495681890"></i>
+                        <a href="https://www.facebook.com/profile.php?id=61584495681890" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="https://instagram.com" aria-label="Instagram">
-                            <i class="https://www.instagram.com/norcineriataccalite.centro/"></i>
+                        <a href="https://www.instagram.com/norcineriataccalite.centro/" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
                         </a>
                         <a href="tel:+39071897903" aria-label="Telefono">
                             <i class="fas fa-phone"></i>
@@ -982,21 +957,14 @@
                 
                 <div class="footer-column">
                     <h3>Contatti</h3>
-                    <p style="margin-bottom: 10px;">
-                        Mercato Piazza d'Armi 59<br>
-                        60127 Ancona
-                    </p>
-                    <p style="margin-bottom: 10px;">
-                        +39 071 897903
-                    </p>
+                    <p><strong>Indirizzo:</strong><br>Mercato Piazza d'Armi 59<br>60127 Ancona</p>
+                    <p><strong>Telefono:</strong><br>+39 071 897903</p>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Orari</h3>
-                    <p>
-                        Lun-Sab: 7:00-20:00<br>
-                        Domenica: Chiuso
-                    </p>
+                    <p><strong>Lunedì - Sabato:</strong><br>7:00-13:00 | 16:00-20:00</p>
+                    <p><strong>Domenica:</strong><br>Chiuso</p>
                 </div>
             </div>
             
@@ -1007,22 +975,44 @@
         </div>
     </footer>
 
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
     <script>
         // Page de chargement
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader');
-            
-            // Attendre que la barre de progression soit terminée
-            setTimeout(function() {
+            setTimeout(() => {
                 loader.style.opacity = '0';
                 loader.style.visibility = 'hidden';
-                
-                // Rendre le body visible
-                document.body.style.opacity = '1';
-            }, 3000); // Correspond à la durée de l'animation de la barre de progression
+            }, 2000);
         });
 
-        // Hero Slider
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Fermer le menu en cliquant sur un lien
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Hero slider
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
         
@@ -1032,42 +1022,45 @@
             slides[currentSlide].classList.add('active');
         }
         
-        // Démarrer le slider après le chargement
-        setTimeout(() => {
-            setInterval(nextSlide, 5000);
-        }, 3000);
-        
-        // Header effect
-        window.addEventListener('scroll', function() {
+        setInterval(nextSlide, 5000);
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.background = window.scrollY > 50 
+                ? 'rgba(255, 255, 255, 0.98)' 
+                : 'rgba(255, 255, 255, 0.95)';
+        });
+
+        // Image modal
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+        
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                const imgAlt = item.querySelector('img').alt;
+                
+                modalImage.src = imgSrc;
+                modalImage.alt = imgAlt;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         });
-        
-        // Animation on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        // Observer les éléments après le chargement
-        setTimeout(() => {
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        }, 3000);
-        
-        // Set current year
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1085,83 +1078,22 @@
                 }
             });
         });
-        
-        // Image modal for gallery
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const imgSrc = this.querySelector('img').src;
-                const imgAlt = this.querySelector('img').alt;
-                
-                const modal = document.createElement('div');
-                modal.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0,0,0,0.95);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 2000;
-                    cursor: pointer;
-                `;
-                
-                const modalImg = document.createElement('img');
-                modalImg.src = imgSrc;
-                modalImg.alt = imgAlt;
-                modalImg.style.cssText = `
-                    max-width: 90%;
-                    max-height: 90%;
-                    object-fit: contain;
-                `;
-                
-                const closeBtn = document.createElement('button');
-                closeBtn.innerHTML = '×';
-                closeBtn.style.cssText = `
-                    position: absolute;
-                    top: 20px;
-                    right: 20px;
-                    background: none;
-                    border: none;
-                    color: white;
-                    font-size: 40px;
-                    cursor: pointer;
-                    z-index: 2001;
-                `;
-                
-                modal.appendChild(modalImg);
-                modal.appendChild(closeBtn);
-                document.body.appendChild(modal);
-                document.body.style.overflow = 'hidden';
-                
-                function closeModal() {
-                    document.body.removeChild(modal);
-                    document.body.style.overflow = 'auto';
+
+        // Set current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
                 }
-                
-                closeBtn.addEventListener('click', closeModal);
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        closeModal();
-                    }
-                });
-                
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        closeModal();
-                    }
-                });
             });
-        });
-        
-        // Phone call tracking
-        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
-            link.addEventListener('click', function() {
-                console.log('Chiamata a:', this.href.replace('tel:', ''));
-            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
 </html>
-
