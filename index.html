@@ -49,6 +49,7 @@
             justify-content: center;
             padding: 20px;
             border: 2px solid rgba(212, 175, 55, 0.3);
+            animation: pulse 2s infinite alternate;
         }
 
         .logo img {
@@ -68,6 +69,7 @@
             margin-bottom: 15px;
             color: #D4AF37;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            animation: glow 3s infinite alternate;
         }
 
         .subtitle {
@@ -96,6 +98,101 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
+        /* Address Sections */
+        .addresses-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        @media (min-width: 768px) {
+            .addresses-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .address-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s ease;
+            animation: slideInUp 0.8s ease both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .address-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .address-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .address-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .address-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #8B0000, #D4AF37);
+        }
+
+        .address-title {
+            font-size: 1.2rem;
+            color: #D4AF37;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .address-icon {
+            color: #8B0000;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        .address-details {
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .address-details p {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .address-details i {
+            color: #D4AF37;
+            width: 20px;
+        }
+
+        .phone-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .phone-link:hover {
+            color: #D4AF37;
+            transform: scale(1.05);
+        }
+
         /* Contact Info */
         .contact-grid {
             display: grid;
@@ -112,7 +209,7 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             border-left: 4px solid #D4AF37;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
 
         .contact-item:hover {
@@ -166,6 +263,11 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .map-container:hover {
+            transform: scale(1.01);
         }
 
         #map {
@@ -201,12 +303,14 @@
             font-size: 1.5rem;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            animation: float 3s infinite ease-in-out;
         }
 
         .social-link:hover {
             background: #8B0000;
             transform: translateY(-5px);
             border-color: #D4AF37;
+            animation: none;
         }
 
         .social-link.facebook:hover {
@@ -216,6 +320,11 @@
         .social-link.instagram:hover {
             background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #FFDC80);
         }
+
+        .social-link:nth-child(1) { animation-delay: 0s; }
+        .social-link:nth-child(2) { animation-delay: 0.2s; }
+        .social-link:nth-child(3) { animation-delay: 0.4s; }
+        .social-link:nth-child(4) { animation-delay: 0.6s; }
 
         /* Footer */
         .footer {
@@ -227,7 +336,7 @@
             animation: fadeIn 1s ease 1.5s both;
         }
 
-        /* Animations */
+        /* New Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -247,6 +356,56 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 5px rgba(212, 175, 55, 0.5), 0 0 10px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212, 175, 55, 0.5);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
             }
         }
 
@@ -390,30 +549,37 @@
                 un'esperienza migliore. Torneremo online al più presto con tante novità!
             </p>
 
+            <!-- Addresses Container -->
+            <div class="addresses-container">
+                <!-- First Address Card -->
+                <div class="address-card">
+                    <div class="address-title">
+                        <i class="fas fa-store address-icon"></i>
+                        <span>PRIMA MACELLERIA</span>
+                    </div>
+                    <div class="address-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Mercato Piazza d'Armi 5B</p>
+                        <p><i class="fas fa-city"></i> 60127 Ancona</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+39071897903" class="phone-link">+39 071 897903</a></p>
+                    </div>
+                </div>
+
+                <!-- Second Address Card -->
+                <div class="address-card">
+                    <div class="address-title">
+                        <i class="fas fa-store address-icon"></i>
+                        <span>SECONDA MACELLERIA</span>
+                    </div>
+                    <div class="address-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Via Kennedy 10</p>
+                        <p><i class="fas fa-city"></i> 60122 Ancona</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+390716635605" class="phone-link">+39 071 6635605</a></p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Contact Information -->
             <div class="contact-grid">
-                <!-- Address -->
-                <div class="contact-item" onclick="copyToClipboard('Mercato Piazza d\\'Armi 59, 60127 Ancona')">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>INDIRIZZO</h3>
-                        <p>Mercato Piazza d'Armi 5B<br>60127 Ancona</p>
-                    </div>
-                </div>
-
-                <!-- Phone -->
-                <div class="contact-item" onclick="window.location.href='tel:+39071897903'">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>TELEFONO</h3>
-                        <p><a href="tel:+39071897903">+39 071 897903</a></p>
-                    </div>
-                </div>
-
                 <!-- Hours -->
                 <div class="contact-item">
                     <div class="contact-icon">
@@ -426,7 +592,7 @@
                 </div>
 
                 <!-- Email -->
-                <div class="contact-item" onclick="copyToClipboard('info@norcineriataccalite.it')">
+                <div class="contact-item" onclick="copyToClipboard('norcineriataccalitepaolo@gmail.com')">
                     <div class="contact-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
@@ -490,14 +656,48 @@
         // Copy to clipboard function
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('Indirizzo copiato negli appunti!');
+                // Create a custom notification
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #D4AF37;
+                    color: #1a1a1a;
+                    padding: 15px 25px;
+                    border-radius: 8px;
+                    font-weight: bold;
+                    z-index: 1000;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2s forwards;
+                `;
+                notification.textContent = 'Email copiata negli appunti!';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 2300);
             }).catch(err => {
                 console.error('Errore nella copia: ', err);
             });
         }
 
+        // Add CSS for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
         // Touch feedback
-        document.querySelectorAll('.contact-item, .social-link, .map-container').forEach(element => {
+        document.querySelectorAll('.contact-item, .social-link, .map-container, .address-card').forEach(element => {
             element.addEventListener('touchstart', function() {
                 this.style.transform = 'scale(0.98)';
             });
@@ -521,14 +721,6 @@
 
         // Make map clickable
         document.getElementById('map').style.pointerEvents = 'auto';
-
-        // Smooth scroll for container if content overflows
-        const container = document.querySelector('.maintenance-container');
-        let isScrolling = false;
-        
-        container.addEventListener('touchstart', function(e) {
-            this.style.scrollBehavior = 'smooth';
-        });
 
         // Handle iOS Safari viewport height
         function setVH() {
@@ -557,9 +749,19 @@
                 dotCount = 0;
             }
         }, 500);
+
+        // Add hover effect to address cards on mobile
+        document.querySelectorAll('.address-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+                
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.borderColor = '';
+                }, 300);
+            });
+        });
     </script>
 </body>
 </html>
-
-
-
