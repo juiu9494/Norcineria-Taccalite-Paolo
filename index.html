@@ -713,7 +713,7 @@
         /* ===== PARALLAX ===== */
         .parallax-section {
             height: 600px;
-            background: url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80') fixed center/cover;
+            background: url('img3.jpg') fixed center/cover;
             position: relative;
             transition: transform 0.1s ease;
             transform: translateY(0);
@@ -1064,7 +1064,7 @@
             box-shadow: 0 4px 15px rgba(212, 167, 106, 0.3);
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== FOOTER - CORRECTION DU TROU ===== */
         footer {
             background: linear-gradient(135deg, var(--secondary-color) 0%, #2c1810 100%);
             color: rgba(250, 243, 230, 0.9);
@@ -1085,22 +1085,24 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* CHANGEMENT ICI : 2 colonnes au lieu de 3 */
-            gap: 60px;
+            grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
+            gap: 40px;
             margin-bottom: 60px;
             position: relative;
             z-index: 1;
         }
 
-        @media (min-width: 992px) {
+        @media (max-width: 1200px) {
             .footer-grid {
-                grid-template-columns: repeat(4, 1fr); /* 4 colonnes sur grand écran */
+                grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+                gap: 50px;
             }
         }
 
         @media (max-width: 768px) {
             .footer-grid {
                 grid-template-columns: 1fr; /* 1 colonne sur mobile */
+                gap: 40px;
             }
         }
 
@@ -1118,7 +1120,7 @@
         .footer-column:nth-child(1) { transition-delay: 0.1s; }
         .footer-column:nth-child(2) { transition-delay: 0.3s; }
         .footer-column:nth-child(3) { transition-delay: 0.5s; }
-        .footer-column:nth-child(4) { transition-delay: 0.7s; } /* Ajout du 4ème délai */
+        .footer-column:nth-child(4) { transition-delay: 0.7s; }
 
         .footer-column h3 {
             color: var(--accent-color);
@@ -1299,10 +1301,6 @@
             .section-title h2 {
                 font-size: 2.2rem;
             }
-
-            .about-image img {
-                height: 350px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1326,6 +1324,10 @@
 
             .testimonial-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .about-image img {
+                height: 350px;
             }
         }
 
@@ -1444,9 +1446,9 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');"></div>
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');"></div>
+        <div class="hero-slide active" style="background-image: url('img1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img3.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img4.jpg');"></div>
         
         <div class="hero-overlay"></div>
         
@@ -1471,31 +1473,31 @@
             
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Carne di qualità" class="gallery-image">
+                    <img src="img1.jpg" alt="Carne di qualità" class="gallery-image" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Prodotti norcineria" class="gallery-image">
+                    <img src="img3.jpg" alt="Prodotti norcineria" class="gallery-image" onerror="this.src='https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Specialità carne" class="gallery-image">
+                    <img src="img4.jpg" alt="Specialità carne" class="gallery-image" onerror="this.src='https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bistecche frollate" class="gallery-image">
+                    <img src="img5.jpg" alt="Bistecche frollate" class="gallery-image" onerror="this.src='https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Salumi artigianali" class="gallery-image">
+                    <img src="img6.jpg" alt="Salumi artigianali" class="gallery-image" onerror="this.src='https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1589923186741-b7d59d6b2c4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Porchetta tradizionale" class="gallery-image">
+                    <img src="img7.jpg" alt="Porchetta tradizionale" class="gallery-image" onerror="this.src='https://images.unsplash.com/photo-1589923186741-b7d59d6b2c4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Banco norcineria" class="gallery-image">
+                    <img src="img8.jpg" alt="Banco norcineria" class="gallery-image" onerror="this.src='https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
                 </div>
             </div>
         </div>
@@ -1520,7 +1522,7 @@
                 
                 <div class="about-text">
                     <h3>La Nostra Storia</h3>
-                    <p>La Norcineria Taccalite nasce nel 1946 dalla passione per la tradizione carniera marchigiana. Fondata da Paolo Taccalite, l'attività est cresciuta nel cuore di Ancona, diventando un punto di riferimento per gli amanti della carne di qualità.</p>
+                    <p>La Norcineria Taccalite nasce nel 1946 dalla passione per la tradizione carniera marchigiana. Fondata da Paolo Taccalite, l'attività è cresciuta nel cuore di Ancona, diventando un punto di référence per gli amanti della carne di qualità.</p>
                     
                     <p>Da tre generazioni, la famiglia Taccalite porta avanti con dedizione l'arte della norcineria, mantenendo vive le antiche tradizioni mentre abbraccia le migliori pratiche contemporanee. Ogni giorno, selezioniamo personalmente le migliori materie prime, lavoriamo con maestria e seguiamo i ritmi naturali della stagionatura.</p>
                     
@@ -1543,7 +1545,7 @@
             
             <div class="testimonial-grid">
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"La qualità della carne è eccezionale. Ogni taglio è perfetto, e il personale è toujours disponible à conseiller le produit migliore pour ogni occasione."</p>
+                    <p class="testimonial-text">"La qualità della carne è eccezionale. Ogni taglio è perfetto, e il personale è sempre disponibile a consigliare il prodotto migliore per ogni occasione."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">M</div>
                         <div class="author-info">
@@ -1646,7 +1648,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - CORRECTION DU TROU -->
     <footer>
         <div class="container">
             <div class="footer-grid">
