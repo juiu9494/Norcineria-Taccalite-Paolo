@@ -1,1 +1,1912 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norcineria Taccalite dal 1946</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Norcineria Taccalite Paolo - Carni e salumi di altissima qualità ad Ancona. Tradizione di famiglia dal 1946.">
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== RESET ET VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary-color: #8B4513;      /* Marron cuir */
+            --secondary-color: #5D4037;    /* Marron foncé */
+            --accent-color: #D4A76A;       /* Beige doré */
+            --light-color: #FAF3E6;        /* Beige très clair */
+            --medium-beige: #E6D5B8;       /* Beige moyen */
+            --dark-beige: #B8A07E;         /* Beige foncé */
+            --text-color: #3E2723;         /* Marron presque noir */
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-slow: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            --shadow: 0 4px 20px rgba(94, 64, 55, 0.1);
+            --shadow-hover: 0 10px 40px rgba(94, 64, 55, 0.2);
+            --shadow-strong: 0 20px 60px rgba(94, 64, 55, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== PAGE DE CHARGEMENT UNIQUE ET SPECTACULAIRE ===== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2c1810 0%, var(--secondary-color) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .loader-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('logotaca.png') center/20% no-repeat;
+            opacity: 0.05;
+            animation: bgPulse 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgPulse {
+            0% { transform: scale(1); opacity: 0.03; }
+            100% { transform: scale(1.3); opacity: 0.08; }
+        }
+
+        .loader-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .loader-logo-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 50px;
+        }
+
+        .loader-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: logoReveal 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            filter: drop-shadow(0 0 30px rgba(212, 167, 106, 0.3));
+            transform-origin: center;
+        }
+
+        .loader-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 320px;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--accent-color);
+            border-radius: 50%;
+            animation: ringSpin 3s linear infinite;
+        }
+
+        .loader-ring:nth-child(2) {
+            width: 340px;
+            height: 340px;
+            border-top: 2px solid var(--primary-color);
+            animation: ringSpin 4s linear infinite reverse;
+        }
+
+        .loader-ring:nth-child(3) {
+            width: 360px;
+            height: 360px;
+            border-top: 2px solid var(--light-color);
+            animation: ringSpin 5s linear infinite;
+        }
+
+        @keyframes logoReveal {
+            0% { 
+                transform: scale(0) rotate(-180deg); 
+                opacity: 0; 
+            }
+            50% { 
+                transform: scale(1.2) rotate(0deg); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 1; 
+            }
+        }
+
+        @keyframes ringSpin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .loader-text {
+            color: var(--accent-color);
+            font-size: 18px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-top: 40px;
+            font-weight: 300;
+            position: relative;
+            overflow: hidden;
+            height: 40px;
+        }
+
+        .loader-text span {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+            animation: textReveal 0.5s ease forwards;
+        }
+
+        .loader-text span:nth-child(1) { animation-delay: 1.5s; }
+        .loader-text span:nth-child(2) { animation-delay: 1.6s; }
+        .loader-text span:nth-child(3) { animation-delay: 1.7s; }
+        .loader-text span:nth-child(4) { animation-delay: 1.8s; }
+        .loader-text span:nth-child(5) { animation-delay: 1.9s; }
+        .loader-text span:nth-child(6) { animation-delay: 2.0s; }
+        .loader-text span:nth-child(7) { animation-delay: 2.1s; }
+        .loader-text span:nth-child(8) { animation-delay: 2.2s; }
+        .loader-text span:nth-child(9) { animation-delay: 2.3s; }
+        .loader-text span:nth-child(10) { animation-delay: 2.4s; }
+
+        @keyframes textReveal {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .loader-subtext {
+            color: rgba(212, 167, 106, 0.7);
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease 3s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .loader-progress-container {
+            width: 300px;
+            height: 4px;
+            background: rgba(212, 167, 106, 0.1);
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .loader-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-color), #FFD700, var(--accent-color));
+            animation: loading 4s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+            border-radius: 2px;
+        }
+
+        .loader-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: progressShine 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            30% { width: 30%; }
+            70% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .loader-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 6s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% { 
+                transform: translateY(100vh) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) rotate(720deg); 
+                opacity: 0; 
+            }
+        }
+
+        /* ===== HEADER ANIMÉ ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(250, 243, 230, 0);
+            backdrop-filter: blur(0px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 69, 19, 0);
+            transition: var(--transition-slow);
+            transform: translateY(-100%);
+            animation: slideDownHeader 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards 4s;
+        }
+
+        header.scrolled {
+            background: rgba(250, 243, 230, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+            box-shadow: var(--shadow);
+        }
+
+        @keyframes slideDownHeader {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            height: 90px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--secondary-color);
+            transform: translateX(-30px);
+            opacity: 0;
+            animation: fadeInRight 1s ease forwards 4.2s;
+        }
+
+        @keyframes fadeInRight {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+            transition: var(--transition);
+            filter: drop-shadow(0 4px 8px rgba(94, 64, 55, 0.2));
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .logo-text h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 5px;
+            transform: translateX(30px);
+            opacity: 0;
+            animation: fadeInLeft 1s ease forwards 4.2s;
+        }
+
+        @keyframes fadeInLeft {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav li {
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        nav li:nth-child(1) { animation-delay: 4.4s; }
+        nav li:nth-child(2) { animation-delay: 4.5s; }
+        nav li:nth-child(3) { animation-delay: 4.6s; }
+        nav li:nth-child(4) { animation-delay: 4.7s; }
+
+        @keyframes fadeInDown {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        nav a::before, nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: var(--transition);
+        }
+
+        nav a::before {
+            top: 0;
+            left: 0;
+        }
+
+        nav a::after {
+            bottom: 0;
+            right: 0;
+        }
+
+        nav a:hover::before, nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            margin-top: 90px;
+            overflow: hidden;
+            opacity: 0;
+            animation: pageReveal 1.5s ease forwards 4s;
+        }
+
+        @keyframes pageReveal {
+            to { opacity: 1; }
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: scale(1.1);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(93, 64, 55, 0.9) 0%, rgba(139, 69, 19, 0.6) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: var(--light-color);
+            padding: 0 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: heroContentReveal 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards 4.5s;
+        }
+
+        @keyframes heroContentReveal {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            color: var(--light-color);
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            font-weight: 900;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* ===== BOUTONS ANIMÉS ===== */
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--primary-color), #A0522D);
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: btnReveal 1s ease forwards;
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .btn:nth-of-type(1) { animation-delay: 5s; }
+        .btn:nth-of-type(2) { animation-delay: 5.2s; }
+
+        @keyframes btnReveal {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-color), #E6B17E);
+            transition: var(--transition-slow);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--light-color);
+            margin-left: 20px;
+        }
+
+        .btn-outline::before {
+            background: var(--light-color);
+        }
+
+        .btn-outline:hover {
+            border-color: transparent;
+        }
+
+        /* ===== SECTIONS COMMUNES ===== */
+        section {
+            padding: 120px 0;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            overflow: hidden;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 25px;
+            margin-bottom: 20px;
+            transform: translateY(40px);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .section-title.in-view h2 {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        /* ===== GALLERY ===== */
+        .meat-gallery {
+            background: var(--light-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transform: scale(0.9);
+            opacity: 0;
+        }
+
+        .gallery-item.in-view {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.15);
+        }
+
+        /* Enlever le filtre qui cachait les images */
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(93, 64, 55, 0.3); /* Filtre plus léger et visible */
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 0.2; /* Réduit l'opacité pour mieux voir l'image */
+        }
+
+        /* ===== PARALLAX ===== */
+        .parallax-section {
+            height: 600px;
+            background: url('img3.jpg') fixed center/cover;
+            position: relative;
+            transition: transform 0.1s ease;
+            transform: translateY(0);
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.85) 0%, rgba(93, 64, 55, 0.5) 100%);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            background: var(--light-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 80px;
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+            transform: translateX(-50px) rotate(-5deg);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .about-image.in-view {
+            transform: translateX(0) rotate(0deg);
+            opacity: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.08);
+        }
+
+        .about-text {
+            transform: translateX(50px);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .about-text.in-view {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .about-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 35px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .about-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        .about-text p {
+            margin-bottom: 30px;
+            color: var(--text-color);
+            line-height: 1.9;
+            font-size: 1.1rem;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            background: var(--medium-beige);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 167, 106, 0.15) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .testimonial-card {
+            padding: 50px;
+            background: var(--light-color);
+            border-left: 5px solid var(--accent-color);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            transform: translateY(40px) rotateY(20deg);
+            opacity: 0;
+            perspective: 1000px;
+        }
+
+        .testimonial-card.in-view {
+            transform: translateY(0) rotateY(0deg);
+            opacity: 1;
+        }
+
+        .testimonial-card:nth-child(1) { transition-delay: 0.2s; }
+        .testimonial-card:nth-child(2) { transition-delay: 0.4s; }
+
+        .testimonial-card:hover {
+            transform: translateY(-15px) rotateY(0deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 30px;
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 1.15rem;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            position: absolute;
+            left: -10px;
+            top: -25px;
+            font-size: 80px;
+            color: var(--accent-color);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .author-info h4 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: var(--dark-beige);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-section {
+            background: var(--light-color);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 80px;
+        }
+
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .contact-info {
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .contact-info.in-view {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        .contact-detail {
+            margin-bottom: 40px;
+            padding-left: 30px;
+            border-left: 3px solid rgba(139, 69, 19, 0.2);
+            transition: var(--transition);
+        }
+
+        .contact-detail:hover {
+            border-left-color: var(--accent-color);
+            transform: translateX(10px);
+        }
+
+        .contact-detail h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-detail h4 i {
+            color: var(--accent-color);
+            font-size: 24px;
+            width: 30px;
+        }
+
+        .map-container {
+            transform: translateX(50px);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .map-container.in-view {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .store-map {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .store-map::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), transparent);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .store-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .store-info {
+            padding: 30px;
+            background: var(--medium-beige);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .store-info:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .store-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .store-info .new-badge {
+            background: linear-gradient(135deg, var(--accent-color), #E6B17E);
+            color: var(--secondary-color);
+            padding: 6px 18px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(212, 167, 106, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #2c1810 100%);
+            color: rgba(250, 243, 230, 0.9);
+            padding: 100px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--accent-color), #E6B17E, var(--accent-color));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr); /* 4 colonnes au lieu de 3 */
+            }
+        }
+
+        .footer-column {
+            transform: translateY(40px);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .footer-column.in-view {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .footer-column:nth-child(1) { transition-delay: 0.1s; }
+        .footer-column:nth-child(2) { transition-delay: 0.3s; }
+        .footer-column:nth-child(3) { transition-delay: 0.5s; }
+        .footer-column:nth-child(4) { transition-delay: 0.7s; }
+
+        .footer-column h3 {
+            color: var(--accent-color);
+            font-size: 22px; /* Réduit la taille */
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px; /* Réduit la largeur */
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .footer-column p {
+            margin-bottom: 12px; /* Réduit l'espacement */
+            line-height: 1.6; /* Réduit l'interligne */
+            font-size: 14px; /* Réduit la taille */
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px; /* Réduit l'espacement */
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px; /* Réduit la taille */
+            height: 40px;
+            background: rgba(212, 167, 106, 0.15);
+            border-radius: 50%;
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 18px; /* Réduit la taille */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-color);
+            transform: scale(0);
+            border-radius: 50%;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .social-links a:hover::before {
+            transform: scale(1);
+        }
+
+        .social-links a i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(212, 167, 106, 0.3);
+            color: rgba(250, 243, 230, 0.7);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .loader-logo-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .loader-ring {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .loader-ring:nth-child(2) {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .loader-ring:nth-child(3) {
+                width: 260px;
+                height: 260px;
+            }
+            
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 90px);
+                background: rgba(250, 243, 230, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 80px;
+                transition: var(--transition-slow);
+                gap: 40px;
+                box-shadow: 0 10px 40px rgba(94, 64, 55, 0.15);
+                z-index: 999;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            nav a {
+                font-size: 20px;
+                padding: 12px 0;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+                align-items: center;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr; /* 1 colonne sur mobile */
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .loader-logo-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .loader-text {
+                font-size: 14px;
+                letter-spacing: 4px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image img {
+                height: 350px;
+            }
+        }
+
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(62, 39, 35, 0.98);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(0.7);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -60px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 40px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page de Chargement Unique et Spectaculaire -->
+    <div id="loader">
+        <div class="loader-bg"></div>
+        <div class="loader-particles" id="loaderParticles"></div>
+        <div class="loader-content">
+            <div class="loader-logo-container">
+                <img src="logotaca.png" alt="Norcineria Taccalite Paolo" class="loader-logo">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+            </div>
+            
+            <div class="loader-text">
+                <span>N</span><span>O</span><span>R</span><span>C</span><span>I</span><span>N</span><span>E</span><span>R</span><span>I</span><span>A</span>
+            </div>
+            
+            <div class="loader-subtext">Tradizione dal 1946</div>
+            
+            <div class="loader-progress-container">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#home" class="logo">
+                    <img src="logotaca.png" alt="Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Norcineria Taccalite</h1>
+                        <p>Dal 1946</p>
+                    </div>
+                </a>
+                
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#gallery">Prodotti</a></li>
+                        <li><a href="#about">Chi Siamo</a></li>
+                        <li><a href="#contact">Contatti</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-slide active" style="background-image: url('img1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img3.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img4.jpg');"></div>
+        
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h2>La Tradizione della Carne</h2>
+            <p>Esperienza e passione in ogni taglio, dal 1946.</p>
+            <div class="btn-group">
+                <a href="#gallery" class="btn">Scopri di Più</a>
+                <a href="tel:+39071897903" class="btn btn-outline">
+                    <i class="fas fa-phone"></i> Prenota Ora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="meat-gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Prodotti</h2>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia-cdn.tripadvisor.com%2Fmedia%2Fphoto-s%2F29%2F59%2F85%2Fba%2Ftaglio.jpg&f=1&nofb=1&ipt=eaa07472a6468ff66e5baad6a4b2b753d130b2a72250750464f0e8b8f882b524" alt="Carne di qualità" class="gallery-image">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.norcineriaansuini.it%2Fwp-content%2Fuploads%2F2021%2F02%2Flonza-ansuini-capocollo-3.jpg&f=1&nofb=1&ipt=77f214a4aba92f67ecc4bcc7705b60eb6fe128d108ecd1293bbadd70d8aea9dc" alt="Prodotti norcineria" class="gallery-image">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.anticanorcinerialattanzifranco.it%2Fwp-content%2Fuploads%2F2024%2F04%2FProsciutto-dolce-con-osso2.jpg&f=1&nofb=1&ipt=35f73880e383d3f56024520a0f3dd5b33bc3b420c058fd8dddb7db42547d6998" alt="Specialità carne" class="gallery-image">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmymarca.it%2Ftmp%2Ftt%2F0x0x0%2Fimg_product%2Fold_258e1de014be051dccfce7f1ec86f1ae.jpg&f=1&nofb=1&ipt=f80b442932af1f1943305a806adf1b916b918a28ab0d74f14a91cdb76cebba69" alt="Bistecche frollate" class="gallery-image">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D648893110586709&f=1&nofb=1&ipt=202a4f2d83a4f8fa8c6d4dea6edaf9013a6bb859612f87548567e93e576e2361" alt="Salumi artigianali" class="gallery-image">
+                </div>
+                 <div class="gallery-item">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.norcineriamedei.it%2Fwp-content%2Fuploads%2F2024%2F02%2Fpancetta-arrotolata-stagionata-norcineria-medei.jpg&f=1&nofb=1&ipt=5e6490f0a464177b104bf1e7d3179d635d71236ba8a1a495222b09dd58d0b412" class="gallery-image">
+                </div>
+                 <div class="gallery-item">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fnorcineriadeangelis.it%2Fwp-content%2Fuploads%2F2020%2F10%2Fimage00034.jpeg&f=1&nofb=1&ipt=fdc155c665d9c9e2903d869bfdd6a84f76296f9765692a94bacba0208236f6db" alt="Salumi artigianali" class="gallery-image">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.norcineriamedei.it%2Fwp-content%2Fuploads%2F2024%2F02%2Fcapocollo-stagionato-norcineria-medei.jpg&f=1&nofb=1&ipt=25644a9a3a90905f27b45dce9d49ec9691831411f44233b596e6adaa7cb0c47c" alt="Porchetta tradizionale" class="gallery-image">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.renzini.it%2Fupload%2Fcopertina-slider-small-51.jpg&f=1&nofb=1&ipt=5fd8ae6a2c7a1f45ae6145851202ddbbb45c7847237599deedbb8be0dea4110a" alt="Banco norcineria" class="gallery-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Chi Siamo</h2>
+            </div>   
+            <img src="logotaca.png" alt="La nostra norcineria">  
+                <div class="about-text">
+                    <h3>La Nostra Storia</h3>
+                    <p>La Norcineria Taccalite nasce nel 1946 dalla passione per la tradizione carniera marchigiana. Fondata da Paolo Taccalite, l'attività è cresciuta nel cuore di Ancona, diventando un punto di riferimento per gli amanti della carne di qualità.</p>
+                    
+                    <p>Da tre generazioni, la famiglia Taccalite porta avanti con dedizione l'arte della norcineria, mantenendo vive le antiche tradizioni mentre abbraccia le migliori pratiche contemporanee. Ogni giorno, selezioniamo personalmente le migliori materie prime, lavoriamo con maestria e seguiamo i ritmi naturali della stagionatura.</p>
+                    
+                    <p>La nostra filosofia si basa su tre pilastri fondamentali: qualità incontestabile, rispetto per la tradizione e trasparenza verso i nostri clienti. Siamo orgogliosi di poter raccontare la storia di ogni nostro prodotto.</p>
+                    
+                    <p><strong>Nuova Apertura:</strong> Recentemente abbiamo aperto una seconda sede per servire meglio i nostri clienti nel centro di Ancona, portando la stessa qualità e tradizione in una nuova location moderna e accogliente.</p>
+                    
+                    <a href="#contact" class="btn" style="margin-top: 40px;">Visita il Nostro Negozio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cosa Dicono di Noi</h2>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"La qualità della carne è eccezionale. Ogni taglio è perfetto, e il personale è sempre disponibile a consigliare il prodotto migliore per ogni occasione."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Marco Rossi</h4>
+                            <p>Cliente da 10 anni</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Non c'è confronto con altre norcinerie. La loro porchetta è la migliore di Ancona, e i salumi hanno un sapore unico che racconta anni di esperienza."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">L</div>
+                        <div class="author-info">
+                            <h4>Laura Bianchi</h4>
+                            <p>Appassionata di gastronomia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contatti</h2>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Vieni a Trovarci</h3>
+                    
+                    <div class="contact-detail">
+                        <h4><i class="fas fa-store"></i> Sede Storica</h4>
+                        <p>Mercato Piazza d'Armi 59<br>60127 Ancona</p>
+                        <p><strong>Telefono:</strong> <a href="tel:+39071897903" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">+39 071 897903</a></p>
+                    </div>
+                    <div class="contact-detail">
+                        <h4><i class="fas fa-clock"></i> Orari</h4>
+                        <p>Lunedì - Sabato<br>07:30-19:30<br>Domenica : Chiuso</p>
+                        <p>Giovedì : 07:30-13:00</p>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <h4><i class="fas fa-store-alt"></i> Nuova Sede Centro</h4>
+                        <p>Piazza J.F. Kennedy, 10<br>60122 Ancona</p>
+                        <p><strong>Telefono:</strong> <a href="tel:+39071897903" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">+39 071 897903</a></p>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <h4><i class="fas fa-clock"></i> Orari</h4>
+                        <p>Lunedì - Sabato<br>09:00-20:00<br> Domenica : Chiuso</p>
+                    </div>
+                    
+                    <a href="tel:+39071897903" class="btn" style="margin-top: 30px;">
+                        <i class="fas fa-phone"></i> Chiama Ora
+                    </a>
+                </div>
+                
+                <div class="map-container">
+                    <div class="store-info">
+                        <h4>Sede Storica <span class="new-badge">Dal 1946</span></h4>
+                        <p><strong>Indirizzo:</strong> Mercato Piazza d'Armi 59, 60127 Ancona</p>
+                    </div>
+                    
+                    <div class="store-map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2878.654240723935!2d13.518215315499245!3d43.82444497911556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d3f7b7c7b7b7b%3A0x7b7b7b7b7b7b7b7b!2sMercato%20Piazza%20d&#39;Armi%2C%2060127%20Ancona!5e0!3m2!1sit!2sit!4v1645541234567!5m2!1sit!2sit" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy"
+                            title="Mappa Norcineria Taccalite Paolo - Sede Storica">
+                        </iframe>
+                    </div>
+                    
+                    <div class="store-info">
+                        <h4>Nuova Sede Centro <span class="new-badge">Nuova Apertura</span></h4>
+                        <p><strong>Indirizzo:</strong> Piazza J.F. Kennedy, 10, 60122 Ancona</p>
+                        <p><em>Portiamo la tradizione nel cuore di Ancona con la nostra nuova sede moderna e accogliente.</em></p>
+                    </div>
+                    
+                    <div class="store-map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.4168474296825!2d13.50677997528672!3d43.61868225466398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d7fbcb402b7e5%3A0xe71acc874a1f27d5!2sPiazza%20J.%20F.%20Kennedy%2C%2010%2C%2060122%20Ancona%20AN%2C%20Italie!5e0!3m2!1sfr!2snl!4v1769062213255!5m2!1sfr!2snl" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Mappa Norcineria Taccalite Paolo - Nuova Sede Centro">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Norcineria Taccalite Paolo</h3>
+                    <p>Tradizione e qualità nella lavorazione della carne dal 1946. Con due sedi per servirvi meglio ad Ancona.</p>
+                    
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61584495681890" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/norcineriataccalite.centro/" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="tel:+39071897903" aria-label="Telefono">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>La Nostra Storia</h3>
+                    <p>Fondata nel 1946 da Paolo Taccalite, portiamo avanti con passione l'arte della norcineria marchigiana da tre generazioni.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Orari Sede Storica</h3>
+                    <p><strong>Mercato Piazza d'Armi 59</strong><br>60127 Ancona</p>
+                    <p>Lunedì - Sabato<br>07:30-19:30</p>
+                    <p>Giovedì: 07:30-13:00<br>Domenica: Chiuso</p>
+                </div>
+                 
+                <div class="footer-column">
+                    <h3>Orari Nuova Sede</h3>
+                    <p><strong>Piazza J.F. Kennedy, 10</strong><br>60122 Ancona</p>
+                    <p>Lunedì - Sabato<br>09:00-20:00</p>
+                    <p>Giovedì e Domenica:<br>Chiuso</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 1946 - <span id="currentYear"></span> Norcineria Taccalite Paolo - Tutti i diritti riservati</p>
+                <p style="margin-top: 10px; font-size: 13px;">Sede Storica dal 1946 | Nuova Sede Centro - Apertura Recente</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        // Page de chargement unique et spectaculaire
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.getElementById('loader');
+            const loaderParticles = document.getElementById('loaderParticles');
+            
+            // Créer des particules animées
+            function createParticles() {
+                for (let i = 0; i < 30; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Position aléatoire
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.width = Math.random() * 6 + 2 + 'px';
+                    particle.style.height = particle.style.width;
+                    
+                    // Animation delay aléatoire
+                    particle.style.animationDelay = Math.random() * 6 + 's';
+                    
+                    // Opacité aléatoire
+                    particle.style.opacity = Math.random() * 0.6 + 0.2;
+                    
+                    // Couleur aléatoire
+                    const colors = ['#D4A76A', '#8B4513', '#FAF3E6', '#FFD700'];
+                    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    loaderParticles.appendChild(particle);
+                }
+            }
+            
+            createParticles();
+            
+            // Fermer le loader après l'animation complète
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                
+                // Activer les animations du header et du contenu
+                document.querySelector('header').style.animation = 'slideDownHeader 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards';
+            }, 4000); // 4 secondes d'animation
+        });
+
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Fermer le menu en cliquant sur un lien
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Hero slider
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        setTimeout(() => {
+            setInterval(nextSlide, 6000);
+        }, 5000); // Commencer après le chargement
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrollY = window.scrollY;
+            
+            if (scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Effet parallaxe sur la section parallaxe
+            const parallaxSection = document.querySelector('.parallax-section');
+            if (parallaxSection) {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.3;
+                parallaxSection.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Image modal
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+        
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                const imgAlt = item.querySelector('img').alt;
+                
+                modalImage.src = imgSrc;
+                modalImage.alt = imgAlt;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 90,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Set current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Animation on scroll avec Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    
+                    // Animation spécifique pour les titres de section
+                    if (entry.target.classList.contains('section-title')) {
+                        const h2 = entry.target.querySelector('h2');
+                        if (h2) h2.classList.add('in-view');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments à animer
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        document.querySelectorAll('.section-title').forEach(title => {
+            observer.observe(title);
+        });
+        
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            observer.observe(item);
+        });
+        
+        document.querySelectorAll('.about-image, .about-text').forEach(item => {
+            observer.observe(item);
+        });
+        
+        document.querySelectorAll('.testimonial-card').forEach(item => {
+            observer.observe(item);
+        });
+        
+        document.querySelectorAll('.contact-info, .map-container').forEach(item => {
+            observer.observe(item);
+        });
+        
+        document.querySelectorAll('.footer-column').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Effet au survol des cartes
+        document.querySelectorAll('.testimonial-card, .store-info').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
